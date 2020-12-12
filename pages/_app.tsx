@@ -1,10 +1,11 @@
 import 'antd/lib/style/themes/default.less'
 import 'antd/dist/antd.less'
 import { AppProps } from 'next/dist/next-server/lib/router/router'
-import { Layout, Menu, Breadcrumb } from 'antd'
+import { Layout, Menu } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import pages from 'data/pages'
 import { useRouter } from 'next/router'
+import Breadcrumbs from '@components/Breadcrumbs'
 
 const { SubMenu } = Menu
 const { Header, Content, Sider, Footer } = Layout
@@ -46,10 +47,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           </Menu>
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb>
+          <Breadcrumbs />
           <Content
             style={{
               padding: 24,
