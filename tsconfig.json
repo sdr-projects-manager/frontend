@@ -17,6 +17,7 @@
     "paths": {
       "@public/*": ["./public/*"],
       "@components/*": ["./components/*"],
+      "@styles/*": ["./styles/*"],
     }
   },
   "exclude": ["node_modules"],

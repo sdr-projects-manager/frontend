@@ -1,4 +1,5 @@
-import 'antd/dist/antd.css'
+import 'antd/lib/style/themes/default.less'
+import 'antd/dist/antd.less'
 import { AppProps } from 'next/dist/next-server/lib/router/router'
 import { Layout, Menu, Breadcrumb } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
@@ -46,7 +47,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
         </Content>
       </Layout>
     </Layout>
-    <Footer style={{ textAlign: 'center' }}>
+    <Footer style={{ textAlign: 'center', background: '#17191D' }}>
       <a
         href="https://github.com/sdr-projects-manager"
         target="_blank"
