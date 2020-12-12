@@ -1,13 +1,13 @@
 import 'antd/lib/style/themes/default.less'
 import 'antd/dist/antd.less'
+import Breadcrumbs from '@components/Breadcrumbs'
+import pages from 'data/pages'
+import userMenu from 'data/userMenu'
 import { AppProps } from 'next/dist/next-server/lib/router/router'
 import { Layout, Menu } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
-import pages from 'data/pages'
 import { useRouter } from 'next/router'
-import Breadcrumbs from '@components/Breadcrumbs'
 
-const { SubMenu } = Menu
 const { Header, Content, Sider, Footer } = Layout
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
@@ -18,7 +18,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       <Header
         className="header"
         style={{
-          padding: 0,
+          padding: 0
         }}
       >
         <Menu
@@ -38,12 +38,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
             mode="inline"
             style={{ height: '100%', borderRight: 0 }}
           >
-            <Menu.Item key="1" icon={<UserOutlined />}>
-              nav 1
-            </Menu.Item>
-            <SubMenu key="sub1" icon={<UserOutlined />} title="Submenu">
-              <Menu.Item key="1">option1</Menu.Item>
-            </SubMenu>
+            {userMenu.map((menu) => (
+              <Menu.Item key={menu.name} icon={menu.icon}>
+                {menu.name}
+              </Menu.Item>
+            ))}
           </Menu>
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
@@ -53,7 +52,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
               padding: 24,
               margin: 0,
               minHeight: 280,
-              background: '#fff',
+              background: '#fff'
             }}
           >
             <Component {...pageProps} />
