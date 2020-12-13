@@ -23,7 +23,7 @@ const ProjectsList = () => {
         name: 'Sample team 2',
         link: '/teams/1'
       },
-      raportId: 1
+      raportId: 2
     }
   ]
 
@@ -48,8 +48,8 @@ const ProjectsList = () => {
       />
       <Column
         title="Raport"
-        dataIndex="raport"
-        key="raport"
+        dataIndex="raportId"
+        key="raportId"
         render={(raportId) => (
           <Link href={`/raports/${raportId}`}>Zobacz raport</Link>
         )}
