@@ -5,13 +5,15 @@ import pages from 'data/pages'
 import userMenu from 'data/userMenu'
 import { AppProps } from 'next/dist/next-server/lib/router/router'
 import { Layout, Menu } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
+import { useState } from 'react'
 
 const { Header, Content, Sider, Footer } = Layout
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
-  const router = useRouter()
+  const { pathname } = useRouter()
+  const [menuActiveItem, setMenuActiveItem] = useState('')
 
   return (
     <Layout>
@@ -24,10 +26,14 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={[router.pathname]}
+          defaultSelectedKeys={[pathname]}
+          selectedKeys={[menuActiveItem || pathname]}
+          onClick={({ keyPath }) => setMenuActiveItem(`${keyPath}`)}
         >
           {pages.map((page) => (
-            <Menu.Item key={page.path}>{page.name}</Menu.Item>
+            <Menu.Item key={page.path}>
+              <Link href={page.path}>{page.name}</Link>
+            </Menu.Item>
           ))}
         </Menu>
       </Header>
@@ -37,10 +43,19 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
             theme="dark"
             mode="inline"
             style={{ height: '100%', borderRight: 0 }}
+            defaultSelectedKeys={[pathname]}
+            selectedKeys={[menuActiveItem || pathname]}
+            onClick={({ keyPath }) => setMenuActiveItem(`${keyPath}`)}
           >
             {userMenu.map((menu) => (
-              <Menu.Item key={menu.name} icon={menu.icon}>
-                {menu.name}
+              <Menu.Item
+                key={menu.path}
+                icon={menu.icon}
+                style={{
+                  margin: 0
+                }}
+              >
+                <Link href={menu.path}>{menu.name}</Link>
               </Menu.Item>
             ))}
           </Menu>
