@@ -1,18 +1,16 @@
 import Head from 'next/head'
 import { Typography } from 'antd'
-import TaskList from '@components/Tasks/TaskList'
 
 const { Title } = Typography
 
-const Home: React.FC = () => (
+const Raport: React.FC = () => (
   <>
     <Head>
       <title>Tasks</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <Title>Tasks</Title>
-    <TaskList />
+    <Title>Sample raport</Title>
   </>
 )
 
-export default Home
+export default Raport
