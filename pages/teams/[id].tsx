@@ -3,7 +3,7 @@ import { Typography } from 'antd'
 
 const { Title } = Typography
 
-const Home: React.FC = () => (
+const Team: React.FC = () => (
   <>
     <Head>
       <title>Tasks</title>
@@ -13,4 +13,4 @@ const Home: React.FC = () => (
   </>
 )
 
-export default Home
+export default Team
