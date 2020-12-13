@@ -12,7 +12,8 @@ const ProjectsList = () => {
       team: {
         name: 'Sample team 1',
         link: '/teams/1'
-      }
+      },
+      raportId: 1
     },
     {
       key: '2',
@@ -21,7 +22,8 @@ const ProjectsList = () => {
       team: {
         name: 'Sample team 2',
         link: '/teams/1'
-      }
+      },
+      raportId: 1
     }
   ]
 
@@ -42,6 +44,14 @@ const ProjectsList = () => {
           <Tag color={getTagColor(state)} key={state}>
             {state}
           </Tag>
+        )}
+      />
+      <Column
+        title="Raport"
+        dataIndex="raport"
+        key="raport"
+        render={(raportId) => (
+          <Link href={`/raports/${raportId}`}>Zobacz raport</Link>
         )}
       />
     </Table>
