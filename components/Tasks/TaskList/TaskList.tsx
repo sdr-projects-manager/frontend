@@ -3,7 +3,6 @@ import Column from 'antd/lib/table/Column'
 import { getTagColor } from '@utils/getTagColor'
 import { getPriorityColor } from '@utils/getPriorityColor'
 import Link from 'next/link'
-import { getPriority } from 'os'
 
 const TasksList = () => {
   const data = [
@@ -13,7 +12,7 @@ const TasksList = () => {
       state: 'close',
       project: {
         name: 'Sample project 1',
-        link: '/projects/1'
+        id: '1'
       },
       priority: 'medium'
     },
@@ -23,7 +22,7 @@ const TasksList = () => {
       state: 'open',
       project: {
         name: 'Sample project 2',
-        link: '/projects/1'
+        id: '1'
       },
       priority: 'low'
     },
@@ -33,7 +32,7 @@ const TasksList = () => {
       state: 'open',
       project: {
         name: 'Sample project 2',
-        link: '/projects/1'
+        id: '1'
       },
       priority: 'low'
     }
@@ -46,7 +45,9 @@ const TasksList = () => {
         title="Project"
         dataIndex="project"
         key="project"
-        render={(project) => <Link href={project.link}>{project.name}</Link>}
+        render={(project) => (
+          <Link href={`/projects/${project.id}`}>{project.name}</Link>
+        )}
       />
       <Column
         title="State"
