@@ -1,4 +1,5 @@
 import { Breadcrumb } from 'antd'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 const Breadcrumbs: React.FC = () => {
@@ -19,9 +20,15 @@ const Breadcrumbs: React.FC = () => {
         </>
       )}
       {route !== '/_error' &&
-        asPath
-          .split('/')
-          .map((path) => <Breadcrumb.Item key={path}>{path}</Breadcrumb.Item>)}
+        asPath.split('/').map(
+          (path, key) =>
+            path && (
+              <Breadcrumb.Item key={path}>
+                {key > 0 && <Link href={`/${path}`}>{path}</Link>}
+                {key === 0 && path}
+              </Breadcrumb.Item>
+            )
+        )}
     </Breadcrumb>
   )
 }
