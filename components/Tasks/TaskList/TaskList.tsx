@@ -1,7 +1,9 @@
 import { Table, Tag } from 'antd'
 import Column from 'antd/lib/table/Column'
 import { getTagColor } from '@utils/getTagColor'
+import { getPriorityColor } from '@utils/getPriorityColor'
 import Link from 'next/link'
+import { getPriority } from 'os'
 
 const TasksList = () => {
   const data = [
@@ -12,7 +14,8 @@ const TasksList = () => {
       project: {
         name: 'Sample project 1',
         link: '/projects/1'
-      }
+      },
+      priority: 'medium'
     },
     {
       key: '2',
@@ -21,7 +24,8 @@ const TasksList = () => {
       project: {
         name: 'Sample project 2',
         link: '/projects/1'
-      }
+      },
+      priority: 'low'
     },
     {
       key: '3',
@@ -30,7 +34,8 @@ const TasksList = () => {
       project: {
         name: 'Sample project 2',
         link: '/projects/1'
-      }
+      },
+      priority: 'low'
     }
   ]
 
@@ -50,6 +55,16 @@ const TasksList = () => {
         render={(state) => (
           <Tag color={getTagColor(state)} key={state}>
             {state}
+          </Tag>
+        )}
+      />
+      <Column
+        title="Priority"
+        dataIndex="priority"
+        key="priority"
+        render={(priority) => (
+          <Tag color={getPriorityColor(priority)} key={priority}>
+            {priority}
           </Tag>
         )}
       />
