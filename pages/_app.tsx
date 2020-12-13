@@ -1,33 +1,39 @@
 import 'antd/lib/style/themes/default.less'
 import 'antd/dist/antd.less'
+import Breadcrumbs from '@components/Breadcrumbs'
+import pages from 'data/pages'
+import userMenu from 'data/userMenu'
 import { AppProps } from 'next/dist/next-server/lib/router/router'
 import { Layout, Menu } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
-import pages from 'data/pages'
 import { useRouter } from 'next/router'
-import Breadcrumbs from '@components/Breadcrumbs'
+import Link from 'next/link'
+import { useState } from 'react'
 
-const { SubMenu } = Menu
 const { Header, Content, Sider, Footer } = Layout
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
-  const router = useRouter()
+  const { pathname } = useRouter()
+  const [menuActiveItem, setMenuActiveItem] = useState('')
 
   return (
     <Layout>
       <Header
         className="header"
         style={{
-          padding: 0,
+          padding: 0
         }}
       >
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={[router.pathname]}
+          defaultSelectedKeys={[pathname]}
+          selectedKeys={[menuActiveItem || pathname]}
+          onClick={({ keyPath }) => setMenuActiveItem(`${keyPath}`)}
         >
           {pages.map((page) => (
-            <Menu.Item key={page.path}>{page.name}</Menu.Item>
+            <Menu.Item key={page.path}>
+              <Link href={page.path}>{page.name}</Link>
+            </Menu.Item>
           ))}
         </Menu>
       </Header>
@@ -37,13 +43,21 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
             theme="dark"
             mode="inline"
             style={{ height: '100%', borderRight: 0 }}
+            defaultSelectedKeys={[pathname]}
+            selectedKeys={[menuActiveItem || pathname]}
+            onClick={({ keyPath }) => setMenuActiveItem(`${keyPath}`)}
           >
-            <Menu.Item key="1" icon={<UserOutlined />}>
-              nav 1
-            </Menu.Item>
-            <SubMenu key="sub1" icon={<UserOutlined />} title="Submenu">
-              <Menu.Item key="1">option1</Menu.Item>
-            </SubMenu>
+            {userMenu.map((menu) => (
+              <Menu.Item
+                key={menu.path}
+                icon={menu.icon}
+                style={{
+                  margin: 0
+                }}
+              >
+                <Link href={menu.path}>{menu.name}</Link>
+              </Menu.Item>
+            ))}
           </Menu>
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
@@ -53,7 +67,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
               padding: 24,
               margin: 0,
               minHeight: 280,
-              background: '#fff',
+              background: '#fff'
             }}
           >
             <Component {...pageProps} />
