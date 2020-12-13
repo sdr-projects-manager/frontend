@@ -1,15 +1,23 @@
-import 'antd/lib/style/themes/default.less'
 import 'antd/dist/antd.less'
+import 'antd/lib/style/themes/default.less'
+import 'nprogress/nprogress.css'
 import Breadcrumbs from '@components/Breadcrumbs'
+import GlobalStyles from '@styles/GlobalStyles'
+import Link from 'next/link'
+import NProgress from 'nprogress'
 import pages from 'data/pages'
 import userMenu from 'data/userMenu'
 import { AppProps } from 'next/dist/next-server/lib/router/router'
 import { Layout, Menu } from 'antd'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
+import { useRouter, Router } from 'next/router'
 import { useState } from 'react'
 
 const { Header, Content, Sider, Footer } = Layout
+
+NProgress.configure({ showSpinner: false })
+Router.events.on('routeChangeStart', () => NProgress.start())
+Router.events.on('routeChangeComplete', () => NProgress.done())
+Router.events.on('routeChangeError', () => NProgress.done())
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const { pathname } = useRouter()
@@ -23,6 +31,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           padding: 0
         }}
       >
+        <GlobalStyles />
         <Menu
           theme="dark"
           mode="horizontal"
