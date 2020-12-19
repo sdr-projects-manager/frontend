@@ -14,7 +14,8 @@ const TasksList = () => {
         name: 'Sample project 1',
         id: '1'
       },
-      priority: 'medium'
+      priority: 'medium',
+      date: '2020-02-10'
     },
     {
       key: '2',
@@ -24,7 +25,8 @@ const TasksList = () => {
         name: 'Sample project 2',
         id: '1'
       },
-      priority: 'low'
+      priority: 'low',
+      date: '2020-03-02'
     },
     {
       key: '3',
@@ -34,7 +36,8 @@ const TasksList = () => {
         name: 'Sample project 2',
         id: '1'
       },
-      priority: 'low'
+      priority: 'low',
+      date: '2020-05-10'
     }
   ]
 
@@ -68,6 +71,12 @@ const TasksList = () => {
             {priority}
           </Tag>
         )}
+      />
+      <Column
+        title="Date"
+        dataIndex="date"
+        key="date"
+        render={(date) => date}
       />
     </Table>
   )
