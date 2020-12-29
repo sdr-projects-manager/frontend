@@ -36,7 +36,8 @@ module.exports = {
     'jsx-a11y/accessible-emoji': 'off',
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    'import/prefer-default-export': 'off'
+    'import/prefer-default-export': 'off',
+    'no-param-reassign': 0
   },
   settings: {
     'import/resolver': {
