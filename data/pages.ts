@@ -6,5 +6,9 @@ export default [
   {
     name: 'Teams',
     path: '/teams'
+  },
+  {
+    name: 'Users',
+    path: '/users'
   }
 ]
