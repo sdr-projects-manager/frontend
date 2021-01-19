@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'components/Head'
 import UsersApi from 'services/Api/Users'
 import UsersList from '@components/Users/UsersList'
 import { GetStaticProps } from 'next'
@@ -13,10 +13,7 @@ interface IProps {
 
 const Users: React.FC<IProps> = ({ users }) => (
   <>
-    <Head>
-      <title>Users</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+    <Head title="Users" />
     <Title>Users</Title>
     {users && <UsersList users={users} />}
   </>

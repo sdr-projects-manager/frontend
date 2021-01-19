@@ -1,14 +1,11 @@
-import Head from 'next/head'
+import Head from '@components/Head'
 import { Typography } from 'antd'
 
 const { Title } = Typography
 
 const Home: React.FC = () => (
   <>
-    <Head>
-      <title>SDR Projects Manager</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+    <Head title="SDR Projects Manager" />
     <Title>Homepage</Title>
   </>
 )

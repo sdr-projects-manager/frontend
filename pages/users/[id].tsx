@@ -1,14 +1,11 @@
-import Head from 'next/head'
+import Head from '@components/Head'
 import { Typography } from 'antd'
 
 const { Title } = Typography
 
 const User: React.FC = () => (
   <>
-    <Head>
-      <title>User</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+    <Head title="User" />
     <Title>Sample User</Title>
   </>
 )
