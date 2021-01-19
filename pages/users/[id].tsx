@@ -3,11 +3,11 @@ import { Typography } from 'antd'
 
 const { Title } = Typography
 
-const Teams: React.FC = () => (
+const User: React.FC = () => (
   <>
-    <Head title="Teams" />
-    <Title>Teams</Title>
+    <Head title="User" />
+    <Title>Sample User</Title>
   </>
 )
 
-export default Teams
+export default User
