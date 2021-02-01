@@ -1,15 +1,15 @@
 import Breadcrumbs from '@components/Breadcrumbs'
 import GlobalStyles from '@styles/GlobalStyles'
-import Link from 'next/link'
 import NProgress from 'nprogress'
-import pages from 'data/pages'
 import store from '@store/store'
-import userMenu from 'data/userMenu'
 import { AppProps } from 'next/dist/next-server/lib/router/router'
-import { Layout, Menu } from 'antd'
+import { Layout } from 'antd'
 import { Provider } from 'react-redux'
 import { useRouter, Router } from 'next/router'
 import { useState } from 'react'
+import SideMenu from '@components/SideMenu'
+import MainMenu from '@components/MainMenu'
+import { appWithTranslation } from '../locale/i18n'
 
 const { Header, Content, Sider, Footer } = Layout
 
@@ -18,7 +18,7 @@ Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
-const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+const MyApp: React.FC<AppProps> = ({ Component, pageProps, t }) => {
   const { pathname } = useRouter()
   const [menuActiveItem, setMenuActiveItem] = useState('')
 
@@ -32,42 +32,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           }}
         >
           <GlobalStyles />
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={[pathname]}
-            selectedKeys={[menuActiveItem || pathname]}
-            onClick={({ keyPath }) => setMenuActiveItem(`${keyPath}`)}
-          >
-            {pages.map((page) => (
-              <Menu.Item key={page.path}>
-                <Link href={page.path}>{page.name}</Link>
-              </Menu.Item>
-            ))}
-          </Menu>
+          <MainMenu />
         </Header>
         <Layout>
           <Sider width={200} className="site-layout-background">
-            <Menu
-              theme="dark"
-              mode="inline"
-              style={{ height: '100%', borderRight: 0 }}
-              defaultSelectedKeys={[pathname]}
-              selectedKeys={[menuActiveItem || pathname]}
-              onClick={({ keyPath }) => setMenuActiveItem(`${keyPath}`)}
-            >
-              {userMenu.map((menu) => (
-                <Menu.Item
-                  key={menu.path}
-                  icon={menu.icon}
-                  style={{
-                    margin: 0
-                  }}
-                >
-                  <Link href={menu.path}>{menu.name}</Link>
-                </Menu.Item>
-              ))}
-            </Menu>
+            <SideMenu />
           </Sider>
           <Layout style={{ padding: '0 24px 24px' }}>
             <Breadcrumbs />
@@ -97,4 +66,4 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)

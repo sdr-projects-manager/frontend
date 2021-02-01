@@ -1,14 +1,14 @@
 export default [
   {
-    name: 'Homepage',
+    name: 'homepage',
     path: '/'
   },
   {
-    name: 'Teams',
+    name: 'teams',
     path: '/teams'
   },
   {
-    name: 'Users',
+    name: 'users',
     path: '/users'
   }
 ]
