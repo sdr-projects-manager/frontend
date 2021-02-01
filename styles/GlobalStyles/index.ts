@@ -22,7 +22,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: 1.6rem;
   }
 
-  .anticon path {
+  form .anticon path {
     fill: #3CEAB8
   }
 
