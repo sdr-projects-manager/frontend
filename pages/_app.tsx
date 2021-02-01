@@ -1,6 +1,3 @@
-import 'antd/dist/antd.less'
-import 'antd/lib/style/themes/default.less'
-import 'nprogress/nprogress.css'
 import Breadcrumbs from '@components/Breadcrumbs'
 import GlobalStyles from '@styles/GlobalStyles'
 import Link from 'next/link'

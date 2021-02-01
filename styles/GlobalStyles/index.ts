@@ -1,3 +1,6 @@
+import 'antd/dist/antd.less'
+import 'antd/lib/style/themes/default.less'
+import 'nprogress/nprogress.css'
 import { createGlobalStyle } from 'styled-components'
 import nprogress from './vendor/nprogress'
 
@@ -17,6 +20,10 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     font-size: 1.6rem;
+  }
+
+  .anticon path {
+    fill: #3CEAB8
   }
 
   /* VENDORS */
