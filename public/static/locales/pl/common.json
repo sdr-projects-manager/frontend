@@ -4,5 +4,14 @@
     "tasks": "Zadania",
     "teams": "Zespoły",
     "users": "Użytkownicy",
-    "error-404": "Błąd 404"
+    "error-404": "Błąd 404",
+    "name": "nazwa",
+    "description": "opis",
+    "cost": "koszt",
+    "priority": "priorytet",
+    "close": "zamknięte",
+    "open": "otwarte",
+    "medium": "średni",
+    "low": "niski",
+    "add": "dodaj"
 }

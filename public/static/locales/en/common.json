@@ -1,8 +1,17 @@
 {
-    "homepage": "Homepage",
-    "projects": "Projects",
+    "homepage": "homepage",
+    "projects": "projects",
     "tasks": "tasks",
     "teams": "teams",
     "users": "users",
-    "error-404": "Error 404"
+    "error-404": "Error 404",
+    "name": "name",
+    "description": "description",
+    "cost": "cost",
+    "priority": "priority",
+    "close": "close",
+    "open": "open",
+    "medium": "medium",
+    "low": "low",
+    "add": "add"
 }

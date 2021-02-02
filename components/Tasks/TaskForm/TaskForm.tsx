@@ -1,6 +1,12 @@
 import { Form, Input, Select, Button, InputNumber } from 'antd'
+import { ReactNode } from 'react'
+import { withTranslation } from 'locale/i18n'
 
-const TaskForm = () => {
+interface IProps {
+  t: (text: string) => string
+}
+
+const TaskForm: React.FC<IProps> = ({ t }) => {
   const { TextArea } = Input
   const { Option } = Select
 
@@ -11,40 +17,40 @@ const TaskForm = () => {
       }}
     >
       <Form.Item
-        label="Name"
+        label={t('name')}
         name="name"
-        rules={[{ required: true, message: 'Please input name' }]}
+        rules={[{ required: true, message: t('Please input name') }]}
       >
         <Input />
       </Form.Item>
-      <Form.Item label="Description" name="description">
+      <Form.Item label={t('description')} name="description">
         <TextArea />
       </Form.Item>
       <Form.Item
-        label="Cost($)"
+        label={`${t('cost')}($)`}
         name="cost"
-        rules={[{ required: true, message: 'Please input cost' }]}
+        rules={[{ required: true, message: t('Please input cost') }]}
       >
         <InputNumber />
       </Form.Item>
       <Form.Item
-        label="Priority"
+        label={t('priority')}
         name="priority"
-        rules={[{ required: true, message: 'Please select priority' }]}
+        rules={[{ required: true, message: t('Please select priority') }]}
       >
-        <Select defaultValue="low">
-          <Option value="low">Low</Option>
-          <Option value="medium">Medium</Option>
-          <Option value="heigh">Heigh</Option>
+        <Select>
+          <Option value="low">{t('low')}</Option>
+          <Option value="medium">{t('medium')}</Option>
+          <Option value="heigh">{t('height')}</Option>
         </Select>
       </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit">
-          Submit
+          {t('Submit')}
         </Button>
       </Form.Item>
     </Form>
   )
 }
 
-export default TaskForm
+export default withTranslation('common')(TaskForm)
