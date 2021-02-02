@@ -5,7 +5,7 @@ import { AppProps } from 'next/dist/next-server/lib/router/router'
 import { Layout } from 'antd'
 import { Provider } from 'react-redux'
 import Router from 'next/router'
-import Loged from '@components/Templates/Loged'
+import SwitchTemplate from '@components/Templates/SwitchTemplate'
 import { appWithTranslation } from '../locale/i18n'
 
 NProgress.configure({ showSpinner: false })
@@ -20,7 +20,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
   <Provider store={store}>
     <Layout>
       <GlobalStyles />
-      <Loged Component={Component} pageProps={pageProps} />
+      <SwitchTemplate Component={Component} pageProps={pageProps} />
     </Layout>
   </Provider>
 )
