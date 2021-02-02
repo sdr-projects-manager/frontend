@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import { Breadcrumb } from 'antd'
-import { ReactNode } from 'react'
 import { useRouter } from 'next/router'
 import { withTranslation } from 'locale/i18n'
 
 interface IBreadcrumbsProps {
-  t: (text: string) => ReactNode
+  t: (text: string) => string
 }
 
 const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({ t }) => {

@@ -1,12 +1,11 @@
 import Link from 'next/link'
 import userMenu from 'data/userMenu'
 import { Menu } from 'antd'
-import { ReactNode } from 'react'
 import { withTranslation } from 'locale/i18n'
 import { useRouter } from 'next/router'
 
 interface ISideMenuProps {
-  t: (text: string) => ReactNode
+  t: (text: string) => string
 }
 
 const SideMenu: React.FC<ISideMenuProps> = ({ t }) => {

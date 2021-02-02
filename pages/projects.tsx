@@ -3,7 +3,7 @@ import Head from '@components/Head'
 
 const Project: React.FC = () => (
   <>
-    <Head title="Projects" />
+    <Head title="projects" />
     <ProjectsList />
   </>
 )

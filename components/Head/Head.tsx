@@ -1,13 +1,12 @@
 import NextHead from 'next/head'
 import { withTranslation } from 'locale/i18n'
-import { ReactNode } from 'react'
 import { Typography } from 'antd'
 
 const { Title } = Typography
 
 interface IProps {
   title: string
-  t: (text: string) => ReactNode
+  t: (text: string) => string
 }
 
 const Head: React.FC<IProps> = ({ title, t }) => (

@@ -1,12 +1,11 @@
 import Link from 'next/link'
 import pages from 'data/pages'
 import { Menu } from 'antd'
-import { ReactNode } from 'react'
 import { useRouter } from 'next/router'
 import { withTranslation } from 'locale/i18n'
 
 interface IMainMenu {
-  t: (text: string) => ReactNode
+  t: (text: string) => string
 }
 
 const MainMenu: React.FC<IMainMenu> = ({ t }) => {

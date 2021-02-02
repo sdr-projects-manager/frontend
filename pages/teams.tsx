@@ -2,7 +2,7 @@ import Head from '@components/Head'
 
 const Teams: React.FC = () => (
   <>
-    <Head title="Teams" />
+    <Head title="teams" />
   </>
 )
 
