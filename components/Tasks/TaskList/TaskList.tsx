@@ -1,10 +1,15 @@
-import { Table, Tag } from 'antd'
 import Column from 'antd/lib/table/Column'
-import { getTagColor } from '@utils/getTagColor'
-import { getPriorityColor } from '@utils/getPriorityColor'
 import Link from 'next/link'
+import { Table, Tag } from 'antd'
+import { getPriorityColor } from '@utils/getPriorityColor'
+import { getTagColor } from '@utils/getTagColor'
+import { withTranslation } from 'locale/i18n'
 
-const TasksList = () => {
+interface IProps {
+  t: (text: string) => string
+}
+
+const TasksList: React.FC<IProps> = ({ t }) => {
   const data = [
     {
       key: '1',
@@ -43,9 +48,9 @@ const TasksList = () => {
 
   return (
     <Table dataSource={data}>
-      <Column title="Name" dataIndex="name" key="name" />
+      <Column title={t('name')} dataIndex="name" key="name" />
       <Column
-        title="Project"
+        title={t('project')}
         dataIndex="project"
         key="project"
         render={(project) => (
@@ -53,27 +58,27 @@ const TasksList = () => {
         )}
       />
       <Column
-        title="State"
+        title={t('state')}
         dataIndex="state"
         key="state"
         render={(state) => (
           <Tag color={getTagColor(state)} key={state}>
-            {state}
+            {t(state)}
           </Tag>
         )}
       />
       <Column
-        title="Priority"
+        title={t('priority')}
         dataIndex="priority"
         key="priority"
         render={(priority) => (
           <Tag color={getPriorityColor(priority)} key={priority}>
-            {priority}
+            {t(priority)}
           </Tag>
         )}
       />
       <Column
-        title="Date"
+        title={t('date')}
         dataIndex="date"
         key="date"
         render={(date) => date}
@@ -81,4 +86,4 @@ const TasksList = () => {
     </Table>
   )
 }
-export default TasksList
+export default withTranslation('common')(TasksList)

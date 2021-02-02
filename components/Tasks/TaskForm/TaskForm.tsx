@@ -1,5 +1,4 @@
 import { Form, Input, Select, Button, InputNumber } from 'antd'
-import { ReactNode } from 'react'
 import { withTranslation } from 'locale/i18n'
 
 interface IProps {
@@ -12,6 +11,9 @@ const TaskForm: React.FC<IProps> = ({ t }) => {
 
   return (
     <Form
+      initialValues={{
+        priority: 'low'
+      }}
       style={{
         maxWidth: '40rem'
       }}

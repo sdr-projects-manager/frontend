@@ -13,5 +13,8 @@
     "open": "open",
     "medium": "medium",
     "low": "low",
-    "add": "add"
+    "add": "add",
+    "project": "project",
+    "state": "state",
+    "date": "date"
 }

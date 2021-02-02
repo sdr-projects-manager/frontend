@@ -13,5 +13,8 @@
     "open": "otwarte",
     "medium": "średni",
     "low": "niski",
-    "add": "dodaj"
+    "add": "dodaj",
+    "project": "projekt",
+    "state": "status",
+    "date": "data"
 }
