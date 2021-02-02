@@ -3,9 +3,6 @@ import UsersApi from 'services/Api/Users'
 import UsersList from '@components/Users/UsersList'
 import { GetStaticProps } from 'next'
 import { IUsers } from 'types/IUsers'
-import { Typography } from 'antd'
-
-const { Title } = Typography
 
 interface IProps {
   users: IUsers
@@ -13,8 +10,7 @@ interface IProps {
 
 const Users: React.FC<IProps> = ({ users }) => (
   <>
-    <Head title="Users" />
-    <Title>Users</Title>
+    <Head title="users" />
     {users && <UsersList users={users} />}
   </>
 )

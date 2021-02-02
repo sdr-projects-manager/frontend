@@ -1,17 +1,19 @@
 import Head from '@components/Head'
 import TaskForm from '@components/Tasks/TaskForm'
 import TaskList from '@components/Tasks/TaskList'
-import { Typography } from 'antd'
+import { withTranslation } from 'locale/i18n'
+import { ReactNode } from 'react'
 
-const { Title } = Typography
+interface ITasksProps {
+  t: (text: string) => ReactNode
+}
 
-const Tasks: React.FC = () => (
+const Tasks: React.FC<ITasksProps> = ({ t }) => (
   <>
-    <Head title="Tasks" />
-    <Title>Tasks</Title>
+    <Head title="tasks" />
     <TaskForm />
     <TaskList />
   </>
 )
 
-export default Tasks
+export default withTranslation('common')(Tasks)
