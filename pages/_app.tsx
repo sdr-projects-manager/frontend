@@ -5,7 +5,7 @@ import { AppProps } from 'next/dist/next-server/lib/router/router'
 import { Layout } from 'antd'
 import { Provider } from 'react-redux'
 import Router from 'next/router'
-import SwitchTemplate from '@components/Templates/SwitchTemplate'
+import SwitchTemplate from '@components/templates/SwitchTemplate'
 import { appWithTranslation } from '../locale/i18n'
 
 NProgress.configure({ showSpinner: false })
