@@ -1,22 +1,28 @@
-import { Breadcrumb } from 'antd'
 import Link from 'next/link'
+import { Breadcrumb } from 'antd'
+import { ReactNode } from 'react'
 import { useRouter } from 'next/router'
+import { withTranslation } from 'locale/i18n'
 
-const Breadcrumbs: React.FC = () => {
+interface IBreadcrumbsProps {
+  t: (text: string) => ReactNode
+}
+
+const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({ t }) => {
   const router = useRouter()
   const { route, asPath } = router
 
   return (
     <Breadcrumb style={{ margin: '16px 0' }}>
       {route === '/' && (
-        <Breadcrumb.Item key="/homepage">Homepage</Breadcrumb.Item>
+        <Breadcrumb.Item key="/homepage">{t('homepage')}</Breadcrumb.Item>
       )}
       {route === '/_error' && (
         <>
           <Breadcrumb.Item key="/homepage" href="/">
-            Homepage
+            {t('homepage')}
           </Breadcrumb.Item>
-          <Breadcrumb.Item key="error-404">Error 404</Breadcrumb.Item>
+          <Breadcrumb.Item key="error-404">{t('Error 404')}</Breadcrumb.Item>
         </>
       )}
       {route !== '/_error' &&
@@ -24,8 +30,8 @@ const Breadcrumbs: React.FC = () => {
           (path, key) =>
             path && (
               <Breadcrumb.Item key={path}>
-                {key > 0 && <Link href={`/${path}`}>{path}</Link>}
-                {key === 0 && path}
+                {key > 0 && <Link href={`/${path}`}>{t(path)}</Link>}
+                {key === 0 && t(path)}
               </Breadcrumb.Item>
             )
         )}
@@ -33,4 +39,4 @@ const Breadcrumbs: React.FC = () => {
   )
 }
 
-export default Breadcrumbs
+export default withTranslation('common')(Breadcrumbs)
