@@ -33,7 +33,6 @@ const UserSettings: React.FunctionComponent<IUserSettingsProps> = ({ t }) => (
         </Menu.ItemGroup>
       </Menu>
     }
-    trigger={['click']}
   >
     <UserSettingsStyled>
       <SettingFilled />
