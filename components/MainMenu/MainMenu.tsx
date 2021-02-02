@@ -3,6 +3,7 @@ import pages from 'data/pages'
 import { Menu } from 'antd'
 import { useRouter } from 'next/router'
 import { withTranslation } from 'locale/i18n'
+import UserSettings from './UserSettings'
 
 interface IMainMenu {
   t: (text: string) => string
@@ -13,6 +14,9 @@ const MainMenu: React.FC<IMainMenu> = ({ t }) => {
 
   return (
     <Menu
+      style={{
+        display: 'flex'
+      }}
       theme="dark"
       mode="horizontal"
       defaultSelectedKeys={[pathname]}
@@ -24,6 +28,9 @@ const MainMenu: React.FC<IMainMenu> = ({ t }) => {
           <Link href={page.path}>{t(page.name)}</Link>
         </Menu.Item>
       ))}
+      <Menu.Item style={{ marginLeft: 'auto', padding: '0', display: 'flex' }}>
+        <UserSettings />
+      </Menu.Item>
     </Menu>
   )
 }

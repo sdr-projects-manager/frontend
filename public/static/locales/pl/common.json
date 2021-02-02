@@ -1,9 +1,9 @@
 {
-    "homepage": "Strona główna",
-    "projects": "Projekty",
-    "tasks": "Zadania",
-    "teams": "Zespoły",
-    "users": "Użytkownicy",
+    "homepage": "strona główna",
+    "projects": "projekty",
+    "tasks": "zadania",
+    "teams": "zespoły",
+    "users": "użytkownicy",
     "error-404": "Błąd 404",
     "name": "nazwa",
     "description": "opis",
@@ -16,5 +16,8 @@
     "add": "dodaj",
     "project": "projekt",
     "state": "status",
-    "date": "data"
+    "date": "data",
+    "languages": "języki",
+    "polish": "polski",
+    "english": "angielski"
 }

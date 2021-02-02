@@ -16,5 +16,8 @@
     "add": "add",
     "project": "project",
     "state": "state",
-    "date": "date"
+    "date": "date",
+    "languages": "languages",
+    "polish": "polish",
+    "english": "angielski"
 }
