@@ -15,6 +15,9 @@ const Loged: React.FunctionComponent<LogedProps> = ({
   Component,
   pageProps
 }) => (
+  // const { pathname } = useRouter()
+  // const [menuActiveItem, setMenuActiveItem] = useState('')
+
   <Layout>
     <Header
       className="header"

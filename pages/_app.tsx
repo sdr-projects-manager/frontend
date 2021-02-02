@@ -14,9 +14,6 @@ Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
-  // const { pathname } = useRouter()
-  // const [menuActiveItem, setMenuActiveItem] = useState('')
-
   <Provider store={store}>
     <Layout>
       <GlobalStyles />
