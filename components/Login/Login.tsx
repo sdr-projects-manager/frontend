@@ -1,11 +1,16 @@
 import { Form, Input, Button } from 'antd'
 import { MailTwoTone, LockTwoTone } from '@ant-design/icons'
+import { setToken } from '@store/slices/userSlice'
+import { useDispatch } from 'react-redux'
 
-const Login: React.FunctionComponent = () => (
-  <>
+const Login: React.FunctionComponent = () => {
+  const dispatch = useDispatch()
+
+  return (
     <Form
       onFinish={() => {
         // TODO: send request to sign
+        dispatch(setToken(''))
       }}
     >
       <Form.Item
@@ -29,7 +34,7 @@ const Login: React.FunctionComponent = () => (
         Sign in
       </Button>
     </Form>
-  </>
-)
+  )
+}
 
 export default Login
