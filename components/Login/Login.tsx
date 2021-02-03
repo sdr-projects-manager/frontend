@@ -14,7 +14,7 @@ const Login: React.FunctionComponent<ILoginProps> = ({ t }) => {
   return (
     <Form
       onFinish={() => {
-        dispatch(setToken(''))
+        dispatch(setToken('test'))
       }}
     >
       <Form.Item
@@ -34,7 +34,14 @@ const Login: React.FunctionComponent<ILoginProps> = ({ t }) => {
       >
         <Input.Password placeholder={t('password')} prefix={<LockTwoTone />} />
       </Form.Item>
-      <Button type="primary" htmlType="submit">
+      <Button
+        type="primary"
+        htmlType="submit"
+        style={{
+          display: 'block',
+          margin: '0 auto'
+        }}
+      >
         {t('Sign in')}
       </Button>
     </Form>

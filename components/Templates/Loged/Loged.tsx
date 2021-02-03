@@ -17,43 +17,44 @@ const Loged: React.FunctionComponent<LogedProps> = ({
 }) => (
   // const { pathname } = useRouter()
   // const [menuActiveItem, setMenuActiveItem] = useState('')
-
   <Layout>
-    <Header
-      className="header"
-      style={{
-        padding: 0
-      }}
-    >
-      <MainMenu />
-    </Header>
     <Layout>
-      <Sider width={200} className="site-layout-background">
-        <SideMenu />
-      </Sider>
-      <Layout style={{ padding: '0 24px 24px' }}>
-        <Breadcrumbs />
-        <Content
-          style={{
-            padding: 24,
-            margin: 0,
-            minHeight: 280,
-            background: '#fff'
-          }}
-        >
-          <Component {...pageProps} />
-        </Content>
-      </Layout>
-    </Layout>
-    <Footer style={{ textAlign: 'center', background: '#17191D' }}>
-      <a
-        href="https://github.com/sdr-projects-manager"
-        target="_blank"
-        rel="noreferrer"
+      <Header
+        className="header"
+        style={{
+          padding: 0
+        }}
       >
-        &copy; {new Date().getFullYear()} SDR PROJECTS MANAGER
-      </a>
-    </Footer>
+        <MainMenu />
+      </Header>
+      <Layout>
+        <Sider width={200} className="site-layout-background">
+          <SideMenu />
+        </Sider>
+        <Layout style={{ padding: '0 24px 24px' }}>
+          <Breadcrumbs />
+          <Content
+            style={{
+              padding: 24,
+              margin: 0,
+              minHeight: 280,
+              background: '#fff'
+            }}
+          >
+            <Component {...pageProps} />
+          </Content>
+        </Layout>
+      </Layout>
+      <Footer style={{ textAlign: 'center', background: '#17191D' }}>
+        <a
+          href="https://github.com/sdr-projects-manager"
+          target="_blank"
+          rel="noreferrer"
+        >
+          &copy; {new Date().getFullYear()} SDR PROJECTS MANAGER
+        </a>
+      </Footer>
+    </Layout>
   </Layout>
 )
 
