@@ -19,8 +19,11 @@ const SwitchTemplate: React.FunctionComponent<SwitchTemplateProps> = ({
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (token) {
-      dispatch(setToken({ token: `${localStorage.getItem('token')}` }))
+    if (!token) {
+      const localStorageToken = localStorage.getItem('token')
+      dispatch(
+        setToken({ token: localStorageToken ? `${localStorageToken}` : '' })
+      )
     }
   }, [token])
 
