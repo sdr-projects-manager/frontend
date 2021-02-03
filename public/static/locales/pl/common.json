@@ -22,7 +22,10 @@
     "english": "angielski",
     "Please input your email": "Wpisz swój email",
     "Please input your password": "Wpisz swoje hasło",
+    "Please input your login": "Wpisz swój login",
     "email": "email",
     "password": "hasło",
-    "Sign in": "Zaloguj"
+    "Sign in": "Zaloguj",
+    "You have been logged in": "Zostałeś zalogowany",
+    "Request failed with status code 401": "Żądanie nie powiodło się. Kod stanu 401"
 }

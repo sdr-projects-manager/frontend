@@ -1,28 +1,36 @@
 import Loged from '@components/templates/Loged'
 import UnLogged from '@components/templates/UnLogged'
+import { setToken } from '@store/slices/authorisationSlice'
 import { IStore } from '@store/store'
-import { ComponentType } from 'react'
-import { connect } from 'react-redux'
+import { ComponentType, useEffect } from 'react'
+import { connect, useDispatch } from 'react-redux'
 
 export interface SwitchTemplateProps {
   Component: ComponentType
   pageProps: any
-  isLoged?: boolean
+  token?: string
 }
 
 const SwitchTemplate: React.FunctionComponent<SwitchTemplateProps> = ({
   Component,
   pageProps,
-  isLoged
-}) => (
-  <>
-    {isLoged && <Loged Component={Component} pageProps={pageProps} />}
-    {!isLoged && <UnLogged />}
-  </>
-)
+  token
+}) => {
+  const dispatch = useDispatch()
 
+  useEffect(() => {
+    dispatch(setToken({ token: `${localStorage.getItem('token')}` }))
+  }, [token])
+
+  return (
+    <>
+      {token && <Loged Component={Component} pageProps={pageProps} />}
+      {!token && <UnLogged />}
+    </>
+  )
+}
 const mapStateToProps = (state: IStore) => ({
-  isLoged: !!state.user.token
+  token: state.authorisation.token
 })
 
 export default connect(mapStateToProps)(SwitchTemplate)
