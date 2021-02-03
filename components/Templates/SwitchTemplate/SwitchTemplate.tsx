@@ -1,5 +1,5 @@
 import Loged from '@components/templates/Loged'
-import UnLoged from '@components/templates/UnLoged'
+import UnLogged from '@components/templates/UnLogged'
 import { IStore } from '@store/store'
 import { ComponentType } from 'react'
 import { connect } from 'react-redux'
@@ -17,7 +17,7 @@ const SwitchTemplate: React.FunctionComponent<SwitchTemplateProps> = ({
 }) => (
   <>
     {isLoged && <Loged Component={Component} pageProps={pageProps} />}
-    {!isLoged && <UnLoged />}
+    {!isLoged && <UnLogged />}
   </>
 )
 

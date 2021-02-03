@@ -18,7 +18,7 @@ const UnLoggedStyled = styled.div`
   }
 `
 
-const UnLoged: React.FunctionComponent = () => (
+const UnLogged: React.FunctionComponent = () => (
   <UnLoggedStyled>
     <Title
       level={1}
@@ -32,4 +32,4 @@ const UnLoged: React.FunctionComponent = () => (
   </UnLoggedStyled>
 )
 
-export default UnLoged
+export default UnLogged
