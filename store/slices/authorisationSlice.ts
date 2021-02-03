@@ -14,9 +14,13 @@ const authorisationSlice = createSlice({
       const { token } = action.payload
       state.token = token
       localStorage.setItem('token', token)
+    },
+    logout(state: IProps) {
+      state.token = ''
+      localStorage.removeItem('token')
     }
   }
 })
 
-export const { setToken } = authorisationSlice.actions
+export const { setToken, logout } = authorisationSlice.actions
 export default authorisationSlice.reducer
