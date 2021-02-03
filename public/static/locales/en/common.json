@@ -19,5 +19,10 @@
     "date": "date",
     "languages": "languages",
     "polish": "polish",
-    "english": "angielski"
+    "english": "english",
+    "Please input your email": "Please input your email",
+    "Please input your password": "Please input your password",
+    "email": "email",
+    "password": "password",
+    "Sign in": "Sign in"
 }

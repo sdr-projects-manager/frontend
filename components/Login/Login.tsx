@@ -2,23 +2,27 @@ import { Form, Input, Button } from 'antd'
 import { MailTwoTone, LockTwoTone } from '@ant-design/icons'
 import { setToken } from '@store/slices/userSlice'
 import { useDispatch } from 'react-redux'
+import { withTranslation } from 'locale/i18n'
 
-const Login: React.FunctionComponent = () => {
+interface ILoginProps {
+  t: (text: string) => string
+}
+
+const Login: React.FunctionComponent<ILoginProps> = ({ t }) => {
   const dispatch = useDispatch()
 
   return (
     <Form
       onFinish={() => {
-        // TODO: send request to sign
         dispatch(setToken(''))
       }}
     >
       <Form.Item
         name="email"
-        rules={[{ required: true, message: 'Please input your email!' }]}
+        rules={[{ required: true, message: t('Please input your email') }]}
       >
         <Input
-          placeholder="email"
+          placeholder={t('email')}
           autoComplete="email"
           type="email"
           prefix={<MailTwoTone />}
@@ -26,15 +30,15 @@ const Login: React.FunctionComponent = () => {
       </Form.Item>
       <Form.Item
         name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
+        rules={[{ required: true, message: t('Please input your password') }]}
       >
-        <Input.Password placeholder="password" prefix={<LockTwoTone />} />
+        <Input.Password placeholder={t('password')} prefix={<LockTwoTone />} />
       </Form.Item>
       <Button type="primary" htmlType="submit">
-        Sign in
+        {t('Sign in')}
       </Button>
     </Form>
   )
 }
 
-export default Login
+export default withTranslation('common')(Login)
