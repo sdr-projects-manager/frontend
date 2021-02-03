@@ -1,5 +1,5 @@
 import Head from 'components/Head'
-import UsersApi from 'services/Api/Users'
+import UsersApi from 'services/Api/endpoints/Users'
 import UsersList from '@components/Users/UsersList'
 import { GetStaticProps } from 'next'
 import { IUsers } from 'types/IUsers'

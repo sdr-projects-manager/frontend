@@ -1,5 +1,5 @@
-import { axiosInstance } from './config'
-import { IApi } from './IApi'
+import { axiosInstance } from '../config'
+import { IApi } from '../IApi'
 
 export default class Users implements IApi {
   base = 'users/'
@@ -9,7 +9,7 @@ export default class Users implements IApi {
   }
 
   async getById(id: number) {
-    return axiosInstance.get(`${this.base}/${id}`)
+    return axiosInstance.get(`${this.base}${id}`)
   }
 
   async add() {

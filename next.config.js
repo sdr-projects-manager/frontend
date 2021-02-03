@@ -26,6 +26,9 @@ module.exports = withPlugins(
     i18n: {
       locales: ['en', 'pl'],
       defaultLocale: 'en'
+    },
+    env: {
+      API_BASE_URL: process.env.API_BASE_URL
     }
   }
 )

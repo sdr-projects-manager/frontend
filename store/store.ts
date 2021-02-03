@@ -1,12 +1,17 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import user, { initialState as userState } from '@store/slices/usersSlice'
+import users, { initialState as usersState } from '@store/slices/usersSlice'
+import authorisation, {
+  initialState as authorisationState
+} from '@store/slices/authorisationSlice'
 
 export interface IStore {
-  user: typeof userState
+  users: typeof usersState
+  authorisation: typeof authorisationState
 }
 
 export const rootReducer = combineReducers({
-  user
+  users,
+  authorisation
 })
 
 export default configureStore({
