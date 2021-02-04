@@ -28,5 +28,8 @@
     "Sign in": "Zaloguj",
     "You have been logged in": "Zostałeś zalogowany",
     "Request failed with status code 401": "Żądanie nie powiodło się. Kod stanu 401",
-    "logout": "Wyloguj"
+    "logout": "Wyloguj",
+    "Delete": "Usuń",
+    "Are you shure?": "Na pewno chcesz usunać?",
+    "Name": "Imię"
 }

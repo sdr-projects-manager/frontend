@@ -1,60 +1,57 @@
-import { Table, Tag } from 'antd'
 import Column from 'antd/lib/table/Column'
+import Projects from 'services/Api/endpoints/Projects'
+import { Table, Tag, Spin } from 'antd'
 import { getTagColor } from '@utils/getTagColor'
-import Link from 'next/link'
+import { isError, useQuery } from 'react-query'
+import { toast } from 'react-toastify'
+import { withTranslation } from 'locale/i18n'
+import ButtonDelete from '@components/buttons/Delete'
+import ProjectForm from '../ProjectForm'
 
-const ProjectsList = () => {
-  const data = [
-    {
-      key: '1',
-      name: 'Sample project 1',
-      state: 'close',
-      team: {
-        name: 'Sample team 1',
-        link: '/teams/1'
-      },
-      raportId: 1
-    },
-    {
-      key: '2',
-      name: 'Sample project 2',
-      state: 'open',
-      team: {
-        name: 'Sample team 2',
-        link: '/teams/1'
-      },
-      raportId: 2
-    }
-  ]
+interface IProjectsList {
+  t: (text: string) => string
+  projects?: Array<{
+    name: string
+    status: number
+  }>
+}
+
+const ProjectsList: React.FC<IProjectsList> = ({ t }) => {
+  const { isLoading, error, data } = useQuery('projects', () =>
+    new Projects().get()
+  )
+
+  if (isError(error)) toast.error(error.message)
+
+  const projects = data?.data
 
   return (
-    <Table dataSource={data}>
-      <Column title="Name" dataIndex="name" key="name" />
-      <Column
-        title="Team"
-        dataIndex="team"
-        key="team"
-        render={(team) => <Link href={team.link}>{team.name}</Link>}
-      />
-      <Column
-        title="State"
-        dataIndex="state"
-        key="state"
-        render={(state) => (
-          <Tag color={getTagColor(state)} key={state}>
-            {state}
-          </Tag>
-        )}
-      />
-      <Column
-        title="Raport"
-        dataIndex="raportId"
-        key="raportId"
-        render={(raportId) => (
-          <Link href={`/raports/${raportId}`}>Zobacz raport</Link>
-        )}
-      />
-    </Table>
+    <>
+      {isLoading && <Spin />}
+      {projects && (
+        <Table dataSource={projects} rowKey="id">
+          <Column title={t('Name')} dataIndex="name" key="name" />
+          <Column
+            title={t('Status')}
+            dataIndex="state"
+            key="state"
+            render={(state) => (
+              <Tag color={getTagColor(state)} key={state}>
+                {state}
+              </Tag>
+            )}
+          />
+          <Column
+            title={t('Delete')}
+            render={() => (
+              <ButtonDelete confirmCb={(closeHandler) => closeHandler()} />
+            )}
+          />
+        </Table>
+      )}
+      {!data?.data && <ProjectForm />}
+    </>
   )
 }
-export default ProjectsList
+
+export default withTranslation('common')(ProjectsList)
