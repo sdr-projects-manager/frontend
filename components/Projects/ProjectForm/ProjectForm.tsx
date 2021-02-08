@@ -27,7 +27,10 @@ const ProjectForm: React.FunctionComponent<IProps> = ({
     (newProject: Partial<IProject>) => new Projects().add(newProject),
     {
       onSuccess: (data) => {
-        queryClient.setQueryData('projects', (prev) => [...prev, data.data])
+        queryClient.setQueryData('projects', (prev: any) => [
+          ...prev,
+          data.data
+        ])
         if (setOpen) {
           setOpen(false)
           form.resetFields()
