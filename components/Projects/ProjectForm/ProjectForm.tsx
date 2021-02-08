@@ -1,6 +1,6 @@
 import { Form, Button, Input, Select } from 'antd'
 import { withTranslation } from 'locale/i18n'
-import { useMutation, useQuery } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import Projects from 'services/Api/endpoints/Projects'
 import Teams from 'services/Api/endpoints/Teams'
 import { IProject } from '../../../types/IProjects'
@@ -11,17 +11,36 @@ interface IProps {
   t: (text: string) => string
   submitHandler?: () => void
   values?: IProject
+  setOpen?: (isOpen: boolean) => void
+  setFetch?: (isFetch: boolean) => void
 }
 
-const ProjectForm: React.FunctionComponent<IProps> = ({ t, values }) => {
-  const { mutate } = useMutation((newProject: Partial<IProject>) =>
-    new Projects().add(newProject)
+const ProjectForm: React.FunctionComponent<IProps> = ({
+  t,
+  values,
+  setOpen
+}) => {
+  const queryClient = useQueryClient()
+  const [form] = Form.useForm()
+
+  const { mutate, isLoading } = useMutation(
+    (newProject: Partial<IProject>) => new Projects().add(newProject),
+    {
+      onSuccess: (data) => {
+        queryClient.setQueryData('projects', (prev) => [...prev, data.data])
+        if (setOpen) {
+          setOpen(false)
+          form.resetFields()
+        }
+      }
+    }
   )
 
   const teams = useQuery('teams', () => new Teams().get())
 
   return (
     <Form
+      form={form}
       initialValues={values}
       onFinish={({ name, limitation, teamId }) => {
         mutate({
@@ -43,7 +62,7 @@ const ProjectForm: React.FunctionComponent<IProps> = ({ t, values }) => {
         name="limitation"
         rules={[{ required: true, message: t('Please input budget limit') }]}
       >
-        <Input />
+        <Input type="number" />
       </Form.Item>
       <Form.Item
         label={t('team')}
@@ -58,7 +77,7 @@ const ProjectForm: React.FunctionComponent<IProps> = ({ t, values }) => {
           ))}
         </Select>
       </Form.Item>
-      <Button type="primary" htmlType="submit">
+      <Button type="primary" htmlType="submit" loading={isLoading}>
         {t('Submit')}
       </Button>
     </Form>

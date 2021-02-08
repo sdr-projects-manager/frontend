@@ -1,12 +1,12 @@
 import Modal from 'antd/lib/modal/Modal'
 import { Button } from 'antd'
 import { PlusCircleFilled, EditFilled } from '@ant-design/icons'
-import { useState } from 'react'
+import { cloneElement, useState } from 'react'
 import { withTranslation } from 'locale/i18n'
 
 interface IProps {
   t: (text: string) => string
-  FormComponent: React.ReactNode
+  FormComponent: any
   type: 'add' | 'edit'
 }
 
@@ -28,7 +28,9 @@ const FormModal: React.FC<IProps> = ({ t, FormComponent, type }) => {
         onCancel={() => setOpen(false)}
         footer={<></>}
       >
-        {FormComponent}
+        {cloneElement(FormComponent, {
+          setOpen
+        })}
       </Modal>
     </>
   )
