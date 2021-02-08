@@ -1,5 +1,5 @@
-import { IProject, IProjects } from '@types/IProjects'
 import { AxiosResponse } from 'axios'
+import { IProject, IProjects } from 'types/IProjects'
 import { axiosInstance } from '../config'
 import { IApi } from '../IApi'
 

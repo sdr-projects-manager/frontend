@@ -3,7 +3,7 @@ import { withTranslation } from 'locale/i18n'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import Projects from 'services/Api/endpoints/Projects'
 import Teams from 'services/Api/endpoints/Teams'
-import { IProject } from '../../../types/IProjects'
+import { IProject } from 'types/IProjects'
 
 const { Option } = Select
 

@@ -1,4 +1,4 @@
-import { ITeam, ITeams } from '@types/ITeams'
+import { ITeam, ITeams } from 'types/ITeams'
 import { AxiosResponse } from 'axios'
 import { axiosInstance } from '../config'
 import { IApi } from '../IApi'

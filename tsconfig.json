@@ -20,7 +20,7 @@
       "@styles/*": ["./styles/*"],
       "@utils/*": ["./utils/*"],
       "@store/*": ["./store/*"],
-      "@types/*": ["./types/*"]
+      "types/*": ["./types/*"]
     }
   },
   "exclude": ["node_modules"],
