@@ -10,9 +10,10 @@ const { Option } = Select
 interface IProps {
   t: (text: string) => string
   submitHandler?: () => void
+  values?: IProject
 }
 
-const ProjectForm: React.FunctionComponent<IProps> = ({ t }) => {
+const ProjectForm: React.FunctionComponent<IProps> = ({ t, values }) => {
   const { mutate } = useMutation((newProject: Partial<IProject>) =>
     new Projects().add(newProject)
   )
@@ -21,6 +22,7 @@ const ProjectForm: React.FunctionComponent<IProps> = ({ t }) => {
 
   return (
     <Form
+      initialValues={values}
       onFinish={({ name, limitation, teamId }) => {
         mutate({
           name,
