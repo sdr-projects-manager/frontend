@@ -4,6 +4,7 @@ import { setToken } from '@store/slices/authorisationSlice'
 import { IStore } from '@store/store'
 import { ComponentType, useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
+import LocalStorageService from 'services/LocalStorageService'
 
 export interface SwitchTemplateProps {
   Component: ComponentType
@@ -19,8 +20,11 @@ const SwitchTemplate: React.FunctionComponent<SwitchTemplateProps> = ({
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (token) {
-      dispatch(setToken({ token: `${localStorage.getItem('token')}` }))
+    if (!token) {
+      const localStorageToken = LocalStorageService.getToken()
+      dispatch(
+        setToken({ token: localStorageToken ? `${localStorageToken}` : '' })
+      )
     }
   }, [token])
 

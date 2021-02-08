@@ -13,7 +13,7 @@
     "open": "otwarte",
     "medium": "średni",
     "low": "niski",
-    "add": "dodaj",
+    "Add": "dodaj",
     "project": "projekt",
     "state": "status",
     "date": "data",
@@ -28,5 +28,13 @@
     "Sign in": "Zaloguj",
     "You have been logged in": "Zostałeś zalogowany",
     "Request failed with status code 401": "Żądanie nie powiodło się. Kod stanu 401",
-    "logout": "Wyloguj"
+    "logout": "Wyloguj",
+    "Delete": "Usuń",
+    "Are you shure?": "Na pewno chcesz usunać?",
+    "Name": "Imię",
+    "Submit": "Wyślij",
+    "Edit": "Edytuj",
+    "budget limit": "Limit budgetu",
+    "Please input budget limit": "Wpisz limit",
+    "Please select team": "Wybierz zespół"
 }

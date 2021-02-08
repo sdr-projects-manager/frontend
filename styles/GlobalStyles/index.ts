@@ -26,6 +26,10 @@ const GlobalStyles = createGlobalStyle`
     fill: #3CEAB8
   }
 
+  button.ant-btn-primary path {
+    fill: #fff
+  }
+
   /* VENDORS */
   ${nprogress}
 `
