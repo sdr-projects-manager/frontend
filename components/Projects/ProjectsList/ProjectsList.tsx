@@ -45,6 +45,12 @@ const ProjectsList: React.FC<IProjectsList> = ({ t }) => {
               )}
             />
             <Column
+              title={t('Team')}
+              dataIndex="teamId"
+              key="teamId"
+              render={(teamId) => teamId}
+            />
+            <Column
               title={t('Edit')}
               render={(values) => (
                 <FormModal
@@ -55,6 +61,8 @@ const ProjectsList: React.FC<IProjectsList> = ({ t }) => {
             />
             <Column
               title={t('Delete')}
+              dataIndex="delete"
+              key="delete"
               render={() => (
                 <ButtonDelete confirmCb={(closeHandler) => closeHandler()} />
               )}
