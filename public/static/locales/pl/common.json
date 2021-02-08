@@ -13,7 +13,7 @@
     "open": "otwarte",
     "medium": "średni",
     "low": "niski",
-    "add": "dodaj",
+    "Add": "dodaj",
     "project": "projekt",
     "state": "status",
     "date": "data",
@@ -31,5 +31,10 @@
     "logout": "Wyloguj",
     "Delete": "Usuń",
     "Are you shure?": "Na pewno chcesz usunać?",
-    "Name": "Imię"
+    "Name": "Imię",
+    "Submit": "Wyślij",
+    "Edit": "Edytuj",
+    "budget limit": "Limit budgetu",
+    "Please input budget limit": "Wpisz limit",
+    "Please select team": "Wybierz zespół"
 }

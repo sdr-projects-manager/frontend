@@ -1,11 +1,12 @@
+import ButtonDelete from '@components/buttons/Delete'
 import Column from 'antd/lib/table/Column'
+import FormModal from '@components/FormModal/FormModal'
 import Projects from 'services/Api/endpoints/Projects'
 import { Table, Tag, Spin } from 'antd'
 import { getTagColor } from '@utils/getTagColor'
 import { isError, useQuery } from 'react-query'
 import { toast } from 'react-toastify'
 import { withTranslation } from 'locale/i18n'
-import ButtonDelete from '@components/buttons/Delete'
 import ProjectForm from '../ProjectForm'
 
 interface IProjectsList {
@@ -27,29 +28,37 @@ const ProjectsList: React.FC<IProjectsList> = ({ t }) => {
 
   return (
     <>
-      {isLoading && <Spin />}
-      {projects && (
-        <Table dataSource={projects} rowKey="id">
-          <Column title={t('Name')} dataIndex="name" key="name" />
-          <Column
-            title={t('Status')}
-            dataIndex="state"
-            key="state"
-            render={(state) => (
-              <Tag color={getTagColor(state)} key={state}>
-                {state}
-              </Tag>
-            )}
-          />
-          <Column
-            title={t('Delete')}
-            render={() => (
-              <ButtonDelete confirmCb={(closeHandler) => closeHandler()} />
-            )}
-          />
-        </Table>
-      )}
-      {!data?.data && <ProjectForm />}
+      <FormModal FormComponent={<ProjectForm />} type="add" />
+      <div>
+        {isLoading && <Spin />}
+        {projects && (
+          <Table dataSource={projects} rowKey="id">
+            <Column title={t('Name')} dataIndex="name" key="name" />
+            <Column
+              title={t('Status')}
+              dataIndex="state"
+              key="state"
+              render={(state) => (
+                <Tag color={getTagColor(state)} key={state}>
+                  {state}
+                </Tag>
+              )}
+            />
+            <Column
+              title={t('Edit')}
+              render={() => (
+                <FormModal FormComponent={<ProjectForm />} type="edit" />
+              )}
+            />
+            <Column
+              title={t('Delete')}
+              render={() => (
+                <ButtonDelete confirmCb={(closeHandler) => closeHandler()} />
+              )}
+            />
+          </Table>
+        )}
+      </div>
     </>
   )
 }
