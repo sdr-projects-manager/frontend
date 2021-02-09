@@ -1,5 +1,5 @@
 export default {
   getToken() {
-    return localStorage.getItem('token')
+    return typeof window !== 'undefined' && localStorage.getItem('token')
   }
 }
