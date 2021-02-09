@@ -1,3 +1,4 @@
+import { IProject } from 'types/IProjects'
 import { axiosInstance } from '../config'
 import { IApi } from '../IApi'
 
@@ -12,7 +13,7 @@ export default class Users implements IApi {
     return axiosInstance.get(`${this.base}${id}`)
   }
 
-  async add() {
-    return axiosInstance.post(`${this.base}`)
+  async add(data: Partial<IProject>) {
+    return axiosInstance.post(`${this.base}`, data)
   }
 }

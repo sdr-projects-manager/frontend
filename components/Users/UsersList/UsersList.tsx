@@ -5,6 +5,8 @@ import Users from 'services/Api/endpoints/Users'
 import { isError, useQuery } from 'react-query'
 import { toast } from 'react-toastify'
 import { withTranslation } from 'locale/i18n'
+import FormModal from '@components/FormModal'
+import UserForm from '../UserForm'
 
 interface IProjectsList {
   t: (text: string) => string
@@ -38,6 +40,15 @@ const UsersList: React.FC<IProjectsList> = ({ t }) => {
               <Link key={id} href={`/users/${id}`}>
                 Link
               </Link>
+            )}
+          />
+          <Column
+            title={t('Edit')}
+            render={(values) => (
+              <FormModal
+                FormComponent={<UserForm values={values} />}
+                type="edit"
+              />
             )}
           />
         </Table>
