@@ -18,19 +18,17 @@ const TeamsList: React.FC<ITeamsList> = ({ t }) => {
 
   return (
     <>
-      <div>
-        {isLoading && <Spin />}
-        {data && (
-          <Table dataSource={data} rowKey="id">
-            <Column title={t('Name')} dataIndex="name" key="name" />
-            <Column
-              title={t('Max people')}
-              dataIndex="maxPeople"
-              key="maxPeople"
-            />
-          </Table>
-        )}
-      </div>
+      {isLoading && <Spin />}
+      {data && (
+        <Table dataSource={data} rowKey="id">
+          <Column title={t('Name')} dataIndex="name" key="name" />
+          <Column
+            title={t('Max people')}
+            dataIndex="maxPeople"
+            key="maxPeople"
+          />
+        </Table>
+      )}
     </>
   )
 }
