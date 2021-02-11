@@ -14,7 +14,7 @@ export default class Tasks implements IApi {
     return axiosInstance.get(`${this.base}${id}`)
   }
 
-  async add(data: Partial<ITasks>) {
+  async add(data: Partial<ITask>): Promise<AxiosResponse<ITask>> {
     return axiosInstance.post(`${this.base}`, data)
   }
 }
