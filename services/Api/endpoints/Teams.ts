@@ -17,4 +17,8 @@ export default class Teams implements IApi {
   async add(data: Partial<ITeams>) {
     return axiosInstance.post(`${this.base}`, data)
   }
+
+  async delete(id: number): Promise<AxiosResponse> {
+    return axiosInstance.delete(`${this.base + id}`)
+  }
 }

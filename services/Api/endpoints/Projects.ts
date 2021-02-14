@@ -17,4 +17,8 @@ export default class Projects implements IApi {
   async add(data: Partial<IProject>) {
     return axiosInstance.post(`${this.base}`, data)
   }
+
+  async delete(id: number): Promise<AxiosResponse> {
+    return axiosInstance.delete(`${this.base + id}`)
+  }
 }

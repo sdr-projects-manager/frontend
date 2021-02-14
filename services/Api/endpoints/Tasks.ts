@@ -18,7 +18,7 @@ export default class Tasks implements IApi {
     return axiosInstance.post(`${this.base}`, data)
   }
 
-  async delete(id: number): Promise<AxiosResponse<ITask>> {
+  async delete(id: number): Promise<AxiosResponse> {
     return axiosInstance.delete(`${this.base + id}`)
   }
 }
