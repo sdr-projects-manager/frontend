@@ -8,6 +8,7 @@ import { isError } from '@utils/isError'
 import { toast } from 'react-toastify'
 import FormModal from '@components/FormModal'
 import ButtonDelete from '@components/buttons/Delete'
+import { ITask } from 'types/ITasks'
 import TaskForm from '../TaskForm'
 
 interface IProps {
@@ -59,8 +60,11 @@ const TasksList: React.FC<IProps> = ({ t }) => {
             title={t('Delete')}
             dataIndex="delete"
             key="delete"
-            render={() => (
-              <ButtonDelete confirmCb={(closeHandler) => closeHandler()} />
+            render={(_value, { id }: ITask) => (
+              <ButtonDelete
+                deleteMethod={() => new Tasks().delete(id)}
+                queryKey="tasks"
+              />
             )}
           />
         </Table>

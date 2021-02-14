@@ -11,10 +11,14 @@ export default class Tasks implements IApi {
   }
 
   async getById(id: number): Promise<AxiosResponse<ITask>> {
-    return axiosInstance.get(`${this.base}${id}`)
+    return axiosInstance.get(`${this.base + id}`)
   }
 
   async add(data: Partial<ITask>): Promise<AxiosResponse<ITask>> {
     return axiosInstance.post(`${this.base}`, data)
+  }
+
+  async delete(id: number): Promise<AxiosResponse<ITask>> {
+    return axiosInstance.delete(`${this.base + id}`)
   }
 }

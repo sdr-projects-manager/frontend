@@ -3,27 +3,37 @@ import { Button, Popconfirm } from 'antd'
 import { withTranslation } from 'next-i18next'
 import { PopconfirmProps } from 'antd/lib/popconfirm'
 import { QuestionCircleOutlined } from '@ant-design/icons'
+import { useMutation, useQueryClient } from 'react-query'
+import { AxiosResponse } from 'axios'
 
 interface IProps {
   buttonTitle?: string
   popconfirm?: Partial<PopconfirmProps>
-  confirmCb: (closeHandler: () => void) => void
   t: (text: string) => string
+  deleteMethod: () => Promise<AxiosResponse<any>>
+  queryKey: string
 }
 
 const ButtonDelete: React.FC<IProps> = ({
   t,
   buttonTitle,
   popconfirm,
-  confirmCb
+  deleteMethod,
+  queryKey
 }) => {
   const [isVisible, setVisible] = useState(false)
-  const [confirmLoading, setConfirmLoading] = useState(false)
+  const queryClient = useQueryClient()
 
-  const closeHandler = () => {
-    setVisible(false)
-    setConfirmLoading(false)
-  }
+  const { mutate, isLoading } = useMutation(() => deleteMethod(), {
+    onSuccess: (data) => {
+      const list = queryClient.getQueryData(queryKey) as Array<any>
+      const item = list.find((l) => l.id === data.data.instance.id)
+      const updatedList = list.filter((value) => value.id !== item.id)
+
+      queryClient.setQueryData(queryKey, (prev: any) => updatedList)
+      setVisible(false)
+    }
+  })
 
   return (
     <Popconfirm
@@ -32,12 +42,11 @@ const ButtonDelete: React.FC<IProps> = ({
       okText={t((popconfirm?.cancelText as string) || 'Delete')}
       icon={<QuestionCircleOutlined />}
       onConfirm={() => {
-        setConfirmLoading(true)
-        confirmCb(closeHandler)
+        mutate()
       }}
       okButtonProps={{
         type: 'primary',
-        loading: confirmLoading
+        loading: isLoading
       }}
       cancelButtonProps={{
         danger: true
