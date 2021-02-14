@@ -30,7 +30,7 @@ const ButtonDelete: React.FC<IProps> = ({
       const item = list.find((l) => l.id === data.data.instance.id)
       const updatedList = list.filter((value) => value.id !== item.id)
 
-      queryClient.setQueryData(queryKey, (prev: any) => updatedList)
+      queryClient.setQueryData(queryKey, updatedList)
       setVisible(false)
     }
   })

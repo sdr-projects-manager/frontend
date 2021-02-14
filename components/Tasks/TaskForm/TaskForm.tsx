@@ -1,6 +1,8 @@
 import { Form, Input, Select, Button, InputNumber } from 'antd'
 import { withTranslation } from 'locale/i18n'
-import { useMutation, useQueryClient } from 'react-query'
+import { useEffect } from 'react'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
+import Projects from 'services/Api/endpoints/Projects'
 import Tasks from 'services/Api/endpoints/Tasks'
 import { ITask } from 'types/ITasks'
 
@@ -20,10 +22,19 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
   const [form] = Form.useForm()
 
   const { mutate, isLoading } = useMutation(
-    (newProject: Partial<ITask>) => new Tasks().add(newProject),
+    (newProject: Partial<ITask>) =>
+      initialValues?.id
+        ? new Tasks().edit(initialValues.id ? initialValues.id : 0, newProject)
+        : new Tasks().add(newProject),
     {
-      onSuccess: (data) => {
-        queryClient.setQueryData('tasks', (prev: any) => [...prev, data.data])
+      onSuccess: ({ data }) => {
+        if (initialValues?.id) {
+          // TODO: Update cache not refesh
+          queryClient.refetchQueries('tasks')
+        } else {
+          queryClient.setQueryData('tasks', (prev: any) => [...prev, data])
+        }
+
         if (setOpen) {
           setOpen(false)
           form.resetFields()
@@ -31,6 +42,14 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
       }
     }
   )
+
+  const projects = useQuery('projects', () =>
+    new Projects().get().then((res) => res.data)
+  )
+
+  useEffect(() => {
+    form.setFieldsValue(initialValues)
+  }, [initialValues])
 
   return (
     <Form
@@ -49,7 +68,7 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
       form={form}
     >
       <Form.Item
-        label={t('Name')}
+        label={t('name')}
         name="name"
         rules={[{ required: true, message: t('Please input name') }]}
       >
@@ -59,13 +78,13 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
         <TextArea />
       </Form.Item>
       <Form.Item
-        label={`${t('Cost')}($)`}
+        label={`${t('cost')}($)`}
         name="cost"
         rules={[{ required: true, message: t('Please input cost') }]}
       >
-        <InputNumber />
+        <InputNumber min={1} />
       </Form.Item>
-      <Form.Item
+      {/* <Form.Item
         label={t('priority')}
         name="priority"
         rules={[{ required: true, message: t('Please select priority') }]}
@@ -75,9 +94,9 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
           <Option value="medium">{t('medium')}</Option>
           <Option value="heigh">{t('height')}</Option>
         </Select>
-      </Form.Item>
+      </Form.Item> */}
       <Form.Item
-        label={t('Status')}
+        label={t('status')}
         name="state"
         rules={[{ required: true, message: t('Please select status') }]}
       >
@@ -88,12 +107,16 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
         </Select>
       </Form.Item>
       <Form.Item
-        label={t('Project')}
+        label={t('project')}
         name="projectId"
         rules={[{ required: true, message: t('Please select project') }]}
       >
         <Select>
-          <Option value="192">{t('192')}</Option>
+          {projects.data?.map((project) => (
+            <Option key={project.id} value={project.id}>
+              {project.name}
+            </Option>
+          ))}
         </Select>
       </Form.Item>
       <Form.Item>

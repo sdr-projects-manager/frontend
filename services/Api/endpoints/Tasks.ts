@@ -18,6 +18,10 @@ export default class Tasks implements IApi {
     return axiosInstance.post(`${this.base}`, data)
   }
 
+  async edit(id: number, data: Partial<ITask>): Promise<AxiosResponse<ITask>> {
+    return axiosInstance.put(`${this.base + id}`, data)
+  }
+
   async delete(id: number): Promise<AxiosResponse> {
     return axiosInstance.delete(`${this.base + id}`)
   }
