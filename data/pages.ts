@@ -1,14 +1,25 @@
-export default [
+import { IRole } from 'types/IRoles'
+
+const pages: Array<{
+  name: string
+  path: string
+  roles: [] | Array<IRole>
+}> = [
   {
     name: 'homepage',
-    path: '/'
+    path: '/',
+    roles: []
   },
   {
     name: 'teams',
-    path: '/teams'
+    path: '/teams',
+    roles: []
   },
   {
     name: 'users',
-    path: '/users'
+    path: '/users',
+    roles: ['ADMIN']
   }
 ]
+
+export default pages
