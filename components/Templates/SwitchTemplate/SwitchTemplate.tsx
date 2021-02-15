@@ -26,7 +26,7 @@ const SwitchTemplate: React.FunctionComponent<SwitchTemplateProps> = ({
         setToken({ token: localStorageToken ? `${localStorageToken}` : '' })
       )
     }
-  }, [token])
+  })
 
   return (
     <>
