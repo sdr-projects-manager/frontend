@@ -5,6 +5,7 @@ import { withTranslation, i18n } from 'locale/i18n'
 import availableLanguages from 'data/availableLanguages'
 import { useDispatch } from 'react-redux'
 import { logout } from '@store/slices/authorisationSlice'
+import Link from 'next/link'
 
 interface IUserSettingsProps {
   t: (text: string) => string
@@ -29,6 +30,9 @@ const UserSettings: React.FunctionComponent<IUserSettingsProps> = ({ t }) => {
     <Dropdown
       overlay={
         <Menu selectable defaultSelectedKeys={[i18n.language]}>
+          <Menu.Item key="profile">
+            <Link href="/profile">{t('Profile')}</Link>
+          </Menu.Item>
           <Menu.ItemGroup title={t('languages')}>
             {Object.keys(availableLanguages).map((key) => (
               <Menu.Item onClick={() => i18n.changeLanguage(key)} key={key}>
