@@ -84,17 +84,6 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
       >
         <InputNumber min={1} />
       </Form.Item>
-      {/* <Form.Item
-        label={t('priority')}
-        name="priority"
-        rules={[{ required: true, message: t('Please select priority') }]}
-      >
-        <Select>
-          <Option value="low">{t('low')}</Option>
-          <Option value="medium">{t('medium')}</Option>
-          <Option value="heigh">{t('height')}</Option>
-        </Select>
-      </Form.Item> */}
       <Form.Item
         label={t('status')}
         name="state"
