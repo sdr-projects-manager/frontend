@@ -32,11 +32,8 @@ const MainMenu: React.FC<IMainMenu> = ({
       onClick={({ keyPath }) => setMenuActiveItem(`${keyPath}`)}
     >
       {/* eslint-disable-next-line consistent-return */}
-      {pages.map(({ path, name, roles }) => {
-        if (
-          roles.find((role) => isCurrentUserhasRole(role)) ||
-          roles.length === 0
-        ) {
+      {pages.map(({ path, name, role }) => {
+        if (role === '' || isCurrentUserhasRole(role)) {
           return (
             <Menu.Item key={path}>
               <Link href={path}>{t(name)}</Link>

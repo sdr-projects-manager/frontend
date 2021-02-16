@@ -12,9 +12,8 @@ export const isCurrentUserhasRole = (role: IRole) => {
   let isHasRole = false
 
   if (currentUser) {
-    currentUser.authorities.forEach((auth: any) => {
-      if (auth.authority === `ROLE_${role}`) isHasRole = true
-    })
+    if (currentUser.role.name.toUpperCase() === `${role.toUpperCase()}`)
+      isHasRole = true
 
     return isHasRole
   }

@@ -3,22 +3,22 @@ import { IRole } from 'types/IRoles'
 const pages: Array<{
   name: string
   path: string
-  roles: [] | Array<IRole>
+  role: '' | IRole
 }> = [
   {
     name: 'homepage',
     path: '/',
-    roles: []
+    role: ''
   },
   {
     name: 'teams',
     path: '/teams',
-    roles: []
+    role: ''
   },
   {
     name: 'users',
     path: '/users',
-    roles: ['ADMIN']
+    role: 'ADMIN'
   }
 ]
 

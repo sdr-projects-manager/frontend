@@ -19,8 +19,10 @@ const Profile: React.FC<IProps> = ({ t }) => {
     <>
       {isLoading && <Spin />}
       {data && (
-        <Table dataSource={[data]} pagination={false}>
-          <Column title={t('Name')} dataIndex="username" key="username" />
+        <Table dataSource={[data]} pagination={false} rowKey="id">
+          <Column title={t('Login')} dataIndex="login" key="login" />
+          <Column title={t('Name')} dataIndex="name" key="name" />
+          <Column title={t('Surname')} dataIndex="lastName" key="lastName" />
           <Column
             title={t('Email')}
             dataIndex="email"
@@ -28,20 +30,13 @@ const Profile: React.FC<IProps> = ({ t }) => {
             render={() => <a href={`mailto:${data.email}`}>{data.email}</a>}
           />
           <Column
-            title={t('Roles')}
-            dataIndex="authorities"
-            key="authorities"
-            render={(values) =>
-              values.map((val: { authority: string }) => {
-                const role = val.authority.replace('ROLE_', '') as IRole
-
-                return (
-                  <Tag key={role} color={getRoleColor(role)}>
-                    {role}
-                  </Tag>
-                )
-              })
-            }
+            title={t('Role')}
+            dataIndex="role"
+            key="role"
+            render={(value) => {
+              const role = value.name.toUpperCase() as IRole
+              return <Tag color={getRoleColor(role)}>{role}</Tag>
+            }}
           />
         </Table>
       )}
