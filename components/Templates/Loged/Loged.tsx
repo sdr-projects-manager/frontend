@@ -2,7 +2,7 @@ import SideMenu from '@components/SideMenu'
 import MainMenu from '@components/MainMenu'
 import Breadcrumbs from '@components/Breadcrumbs'
 import { Layout } from 'antd'
-import { ComponentType } from 'react'
+import { ComponentType, useState } from 'react'
 import { useQuery } from 'react-query'
 import CurrentUser from 'services/Api/endpoints/CurrentUser'
 
@@ -18,10 +18,9 @@ const Loged: React.FunctionComponent<LogedProps> = ({
   pageProps
 }) => {
   useQuery('currentUser', () => new CurrentUser().get().then((res) => res.data))
+  const [menuActiveItem, setMenuActiveItem] = useState<string>('')
 
   return (
-    // const { pathname } = useRouter()
-    // const [menuActiveItem, setMenuActiveItem] = useState('')
     <Layout>
       <Layout>
         <Header
@@ -30,11 +29,17 @@ const Loged: React.FunctionComponent<LogedProps> = ({
             padding: 0
           }}
         >
-          <MainMenu />
+          <MainMenu
+            menuActiveItem={menuActiveItem}
+            setMenuActiveItem={setMenuActiveItem}
+          />
         </Header>
         <Layout>
           <Sider width={200} className="site-layout-background">
-            <SideMenu />
+            <SideMenu
+              menuActiveItem={menuActiveItem}
+              setMenuActiveItem={setMenuActiveItem}
+            />
           </Sider>
           <Layout style={{ padding: '0 24px 24px' }}>
             <Breadcrumbs />

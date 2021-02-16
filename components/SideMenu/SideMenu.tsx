@@ -6,9 +6,15 @@ import { useRouter } from 'next/router'
 
 interface ISideMenuProps {
   t: (text: string) => string
+  menuActiveItem: string
+  setMenuActiveItem: (path: string) => void
 }
 
-const SideMenu: React.FC<ISideMenuProps> = ({ t }) => {
+const SideMenu: React.FC<ISideMenuProps> = ({
+  t,
+  menuActiveItem,
+  setMenuActiveItem
+}) => {
   const { pathname } = useRouter()
 
   return (
@@ -17,8 +23,8 @@ const SideMenu: React.FC<ISideMenuProps> = ({ t }) => {
       mode="inline"
       style={{ height: '100%', borderRight: 0 }}
       defaultSelectedKeys={[pathname]}
-      // selectedKeys={[menuActiveItem || pathname]}
-      // onClick={({ keyPath }) => setMenuActiveItem(`${keyPath}`)}
+      selectedKeys={[menuActiveItem || pathname]}
+      onClick={({ keyPath }) => setMenuActiveItem(`${keyPath}`)}
     >
       {userMenu.map((menu) => (
         <Menu.Item

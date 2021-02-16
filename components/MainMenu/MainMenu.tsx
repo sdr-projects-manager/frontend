@@ -9,9 +9,15 @@ import UserSettings from './UserSettings'
 
 interface IMainMenu {
   t: (text: string) => string
+  menuActiveItem: string
+  setMenuActiveItem: (path: string) => void
 }
 
-const MainMenu: React.FC<IMainMenu> = ({ t }) => {
+const MainMenu: React.FC<IMainMenu> = ({
+  t,
+  menuActiveItem,
+  setMenuActiveItem
+}) => {
   const { pathname } = useRouter()
 
   return (
@@ -22,8 +28,8 @@ const MainMenu: React.FC<IMainMenu> = ({ t }) => {
       theme="dark"
       mode="horizontal"
       defaultSelectedKeys={[pathname]}
-      // selectedKeys={[menuActiveItem || pathname]}
-      // onClick={({ keyPath }) => setMenuActiveItem(`${keyPath}`)}
+      selectedKeys={[menuActiveItem || pathname]}
+      onClick={({ keyPath }) => setMenuActiveItem(`${keyPath}`)}
     >
       {/* eslint-disable-next-line consistent-return */}
       {pages.map(({ path, name, roles }) => {

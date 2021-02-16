@@ -7,6 +7,7 @@ import { isError, useQuery } from 'react-query'
 import { toast } from 'react-toastify'
 import { withTranslation } from 'locale/i18n'
 import FormModal from '@components/FormModal'
+import { IProject } from 'types/IProjects'
 import ProjectForm from '../ProjectForm'
 
 interface IProjectsList {
@@ -61,8 +62,11 @@ const ProjectsList: React.FC<IProjectsList> = ({ t }) => {
               title={t('Delete')}
               dataIndex="delete"
               key="delete"
-              render={() => (
-                <ButtonDelete confirmCb={(closeHandler) => closeHandler()} />
+              render={(_value, { id }: IProject) => (
+                <ButtonDelete
+                  deleteMethod={() => new Projects().delete(id)}
+                  queryKey="projects"
+                />
               )}
             />
           </Table>
