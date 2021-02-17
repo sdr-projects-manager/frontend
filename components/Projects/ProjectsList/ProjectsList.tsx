@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import { withTranslation } from 'locale/i18n'
 import FormModal from '@components/FormModal'
 import { IProject } from 'types/IProjects'
+import { ProjectsQuery } from 'types/IQuries'
 import ProjectForm from '../ProjectForm'
 
 interface IProjectsList {
@@ -19,7 +20,7 @@ interface IProjectsList {
 }
 
 const ProjectsList: React.FC<IProjectsList> = ({ t }) => {
-  const { isLoading, error, data } = useQuery('projects', () =>
+  const { isLoading, error, data } = useQuery(ProjectsQuery, () =>
     new Projects().get().then((res) => res.data)
   )
 

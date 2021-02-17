@@ -9,6 +9,7 @@ import { toast } from 'react-toastify'
 import FormModal from '@components/FormModal'
 import ButtonDelete from '@components/buttons/Delete'
 import { ITask } from 'types/ITasks'
+import { TasksQuery } from 'types/IQuries'
 import TaskForm from '../TaskForm'
 
 interface IProps {
@@ -16,7 +17,7 @@ interface IProps {
 }
 
 const TasksList: React.FC<IProps> = ({ t }) => {
-  const { isLoading, error, data } = useQuery('tasks', () =>
+  const { isLoading, error, data } = useQuery(TasksQuery, () =>
     new Tasks().get().then((res) => res.data)
   )
 

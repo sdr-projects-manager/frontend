@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 import Projects from 'services/Api/endpoints/Projects'
 import Teams from 'services/Api/endpoints/Teams'
 import { IProject } from 'types/IProjects'
+import { TeamsQuery } from 'types/IQuries'
 
 const { Option } = Select
 
@@ -39,7 +40,7 @@ const ProjectForm: React.FunctionComponent<IProps> = ({
     }
   )
 
-  const teams = useQuery('teams', () => new Teams().get())
+  const teams = useQuery(TeamsQuery, () => new Teams().get())
 
   return (
     <Form

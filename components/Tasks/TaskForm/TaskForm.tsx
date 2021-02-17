@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import Projects from 'services/Api/endpoints/Projects'
 import Tasks from 'services/Api/endpoints/Tasks'
+import { ProjectsQuery } from 'types/IQuries'
 import { ITask } from 'types/ITasks'
 
 interface IProps {
@@ -43,7 +44,7 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
     }
   )
 
-  const projects = useQuery('projects', () =>
+  const projects = useQuery(ProjectsQuery, () =>
     new Projects().get().then((res) => res.data)
   )
 

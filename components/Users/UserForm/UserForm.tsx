@@ -5,6 +5,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 import Users from 'services/Api/endpoints/Users'
 import { IProject } from 'types/IProjects'
 import Roles from 'services/Api/endpoints/Roles'
+import { RolesQuery } from 'types/IQuries'
 
 const { Option } = Select
 
@@ -33,7 +34,7 @@ const UserForm: React.FunctionComponent<IProps> = ({ t, values, setOpen }) => {
     }
   )
 
-  const roles = useQuery('roles', () =>
+  const roles = useQuery(RolesQuery, () =>
     new Roles().get().then((data) => data.data)
   )
 

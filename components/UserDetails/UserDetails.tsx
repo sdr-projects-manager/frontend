@@ -5,13 +5,14 @@ import { useQuery } from 'react-query'
 import { withTranslation } from 'locale/i18n'
 import { getRoleColor } from '@utils/getRoleColor'
 import { IRole } from 'types/IRoles'
+import { CurrentUserQuery } from 'types/IQuries'
 
 interface IProps {
   t: (text: string) => string
 }
 
 const Profile: React.FC<IProps> = ({ t }) => {
-  const { isLoading, data } = useQuery('currentUser', () =>
+  const { isLoading, data } = useQuery(CurrentUserQuery, () =>
     new CurrentUser().get().then((res) => res.data)
   )
 

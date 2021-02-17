@@ -6,6 +6,7 @@ import { isError, useQuery } from 'react-query'
 import { toast } from 'react-toastify'
 import { withTranslation } from 'locale/i18n'
 import FormModal from '@components/FormModal'
+import { UsersQuery } from 'types/IQuries'
 import UserForm from '../UserForm'
 
 interface IProjectsList {
@@ -13,7 +14,7 @@ interface IProjectsList {
 }
 
 const UsersList: React.FC<IProjectsList> = ({ t }) => {
-  const { isLoading, error, data } = useQuery('users', () =>
+  const { isLoading, error, data } = useQuery(UsersQuery, () =>
     new Users().get().then((res) => res.data)
   )
 

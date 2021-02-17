@@ -1,0 +1,6 @@
+export const ProjectsQuery = 'projects'
+export const TeamsQuery = 'teams'
+export const RolesQuery = 'roles'
+export const CurrentUserQuery = 'currentUser'
+export const TasksQuery = 'tasks'
+export const UsersQuery = 'users'

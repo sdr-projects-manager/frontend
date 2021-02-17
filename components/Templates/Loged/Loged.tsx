@@ -5,6 +5,7 @@ import { Layout } from 'antd'
 import { ComponentType, useState } from 'react'
 import { useQuery } from 'react-query'
 import CurrentUser from 'services/Api/endpoints/CurrentUser'
+import { CurrentUserQuery } from 'types/IQuries'
 
 const { Header, Content, Sider, Footer } = Layout
 
@@ -17,7 +18,9 @@ const Loged: React.FunctionComponent<LogedProps> = ({
   Component,
   pageProps
 }) => {
-  useQuery('currentUser', () => new CurrentUser().get().then((res) => res.data))
+  useQuery(CurrentUserQuery, () =>
+    new CurrentUser().get().then((res) => res.data)
+  )
   const [menuActiveItem, setMenuActiveItem] = useState<string>('')
 
   return (
