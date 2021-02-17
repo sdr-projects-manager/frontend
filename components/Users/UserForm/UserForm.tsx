@@ -1,9 +1,10 @@
 import { IUser } from 'types/IUsers'
 import { Form, Button, Input, Select } from 'antd'
 import { withTranslation } from 'locale/i18n'
-import { useMutation, useQueryClient } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import Users from 'services/Api/endpoints/Users'
 import { IProject } from 'types/IProjects'
+import Roles from 'services/Api/endpoints/Roles'
 
 const { Option } = Select
 
@@ -30,6 +31,10 @@ const UserForm: React.FunctionComponent<IProps> = ({ t, values, setOpen }) => {
         }
       }
     }
+  )
+
+  const roles = useQuery('roles', () =>
+    new Roles().get().then((data) => data.data)
   )
 
   return (
@@ -78,7 +83,11 @@ const UserForm: React.FunctionComponent<IProps> = ({ t, values, setOpen }) => {
         rules={[{ required: true, message: t('Please select role') }]}
       >
         <Select>
-          <Option value="4">User</Option>
+          {roles.data?.map((role) => (
+            <Option key={role.id} value={role.id}>
+              {role.name}
+            </Option>
+          ))}
         </Select>
       </Form.Item>
       <Button type="primary" htmlType="submit" loading={isLoading}>
