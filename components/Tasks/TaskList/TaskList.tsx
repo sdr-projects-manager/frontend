@@ -37,7 +37,12 @@ const TasksList: React.FC<IProps> = ({ t }) => {
             dataIndex="description"
             key="description"
           />
-          <Column title={t('project')} dataIndex="projectId" key="projectId" />
+          <Column
+            title={t('project')}
+            dataIndex="project"
+            key="project"
+            render={(project) => project.name}
+          />
           <Column
             title={t('state')}
             dataIndex="state"
