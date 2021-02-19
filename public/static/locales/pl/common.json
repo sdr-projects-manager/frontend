@@ -7,14 +7,15 @@
     "error-404": "Błąd 404",
     "name": "nazwa",
     "description": "opis",
-    "cost": "koszt",
+    "Cost": "Koszt",
+    "Costs": "Koszt",
     "priority": "priorytet",
     "close": "zamknięte",
     "open": "otwarte",
     "medium": "średni",
     "low": "niski",
     "Add": "dodaj",
-    "project": "projekt",
+    "Project": "Projekt",
     "state": "status",
     "date": "data",
     "languages": "języki",
@@ -44,5 +45,9 @@
     "Role": "rola",
     "Open": "Otwarty",
     "Closed": "Zamknięty",
-    "Team": "Zespół"
+    "Team": "Zespół",
+    "Raporty": "Raporty",
+    "Raport": "Raport",
+    "Profitability": "Zysk",
+    "Budget": "Budżet"
 }

@@ -1,6 +1,5 @@
 import Column from 'antd/lib/table/Column'
 import { Spin, Table, Tag } from 'antd'
-import { getTagColor } from '@utils/getTagColor'
 import { withTranslation } from 'locale/i18n'
 import { useQuery } from 'react-query'
 import Tasks from 'services/Api/endpoints/Tasks'
