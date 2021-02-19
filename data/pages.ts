@@ -6,18 +6,23 @@ const pages: Array<{
   role: '' | IRole
 }> = [
   {
-    name: 'homepage',
+    name: 'Homepage',
     path: '/',
     role: ''
   },
   {
-    name: 'teams',
+    name: 'Teams',
     path: '/teams',
     role: ''
   },
   {
-    name: 'users',
+    name: 'Users',
     path: '/users',
+    role: 'ADMIN'
+  },
+  {
+    name: 'Raports',
+    path: '/raports',
     role: 'ADMIN'
   }
 ]

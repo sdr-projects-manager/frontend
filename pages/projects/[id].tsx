@@ -1,13 +1,19 @@
-import Head from 'components/Head'
-import { Typography } from 'antd'
+import ProjectPage from '@components/Projects/ProjectPage'
 
-const { Title } = Typography
+interface ProjectPage {
+  id: number
+}
 
-const Project: React.FC = () => (
+const Project: React.FC<ProjectPage> = ({ id }) => (
   <>
-    <Head title="tasks" />
-    <Title>Sample project</Title>
+    <ProjectPage id={id} />
   </>
 )
+
+export const getServerSideProps = async ({
+  params
+}: {
+  params: { id: number }
+}) => ({ props: { id: params.id } })
 
 export default Project
