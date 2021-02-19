@@ -9,6 +9,7 @@ import FormModal from '@components/FormModal'
 import { IProject } from 'types/IProjects'
 import { ProjectsQuery } from 'types/IQuries'
 import { getFormatedStatus } from '@utils/getFormatedStatus'
+import Link from 'next/link'
 import ProjectForm from '../ProjectForm'
 
 interface IProjectsList {
@@ -33,7 +34,14 @@ const ProjectsList: React.FC<IProjectsList> = ({ t }) => {
         {isLoading && <Spin />}
         {data && (
           <Table dataSource={data} rowKey="id">
-            <Column title={t('Name')} dataIndex="name" key="name" />
+            <Column
+              title={t('name')}
+              dataIndex="name"
+              key="name"
+              render={(_, values: IProject) => (
+                <Link href={`/projects/${values.id}`}>{values.name}</Link>
+              )}
+            />
             <Column
               title={t('Status')}
               dataIndex="state"
