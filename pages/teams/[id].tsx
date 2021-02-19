@@ -1,13 +1,19 @@
-import Head from 'components/Head'
-import { Typography } from 'antd'
+import TeamPage from '@components/Teams/TeamPage'
 
-const { Title } = Typography
+interface TeamPage {
+  id: number
+}
 
-const Team: React.FC = () => (
+const Team: React.FC<TeamPage> = ({ id }) => (
   <>
-    <Head title="Team" />
-    <Title>Sample team</Title>
+    <TeamPage id={id} />
   </>
 )
+
+export const getServerSideProps = async ({
+  params
+}: {
+  params: { id: number }
+}) => ({ props: { id: params.id } })
 
 export default Team
