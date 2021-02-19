@@ -9,6 +9,7 @@ import { withTranslation } from 'locale/i18n'
 import FormModal from '@components/FormModal'
 import { IProject } from 'types/IProjects'
 import { ProjectsQuery } from 'types/IQuries'
+import { getFormatedStatus } from '@utils/getFormatedStatus'
 import ProjectForm from '../ProjectForm'
 
 interface IProjectsList {
@@ -38,17 +39,21 @@ const ProjectsList: React.FC<IProjectsList> = ({ t }) => {
               title={t('Status')}
               dataIndex="state"
               key="state"
-              render={(state) => (
-                <Tag color={getTagColor(state)} key={state}>
-                  {state}
-                </Tag>
-              )}
+              render={(state) => {
+                const formatedStatus = getFormatedStatus(state)
+
+                return (
+                  <Tag color={formatedStatus.color} key={state}>
+                    {t(formatedStatus.name)}
+                  </Tag>
+                )
+              }}
             />
             <Column
               title={t('Team')}
-              dataIndex="teamId"
-              key="teamId"
-              render={(teamId) => teamId}
+              dataIndex="team"
+              key="team"
+              render={(team) => team.name}
             />
             <Column
               title={t('Edit')}
