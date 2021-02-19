@@ -10,6 +10,7 @@ import FormModal from '@components/FormModal'
 import ButtonDelete from '@components/buttons/Delete'
 import { ITask } from 'types/ITasks'
 import { TasksQuery } from 'types/IQuries'
+import { getFormatedStatus } from '@utils/getFormatedStatus'
 import TaskForm from '../TaskForm'
 
 interface IProps {
@@ -47,11 +48,14 @@ const TasksList: React.FC<IProps> = ({ t }) => {
             title={t('state')}
             dataIndex="state"
             key="state"
-            render={(state) => (
-              <Tag color={getTagColor(state)} key={state}>
-                {t(state)}
-              </Tag>
-            )}
+            render={(state) => {
+              const formatedStatus = getFormatedStatus(state)
+              return (
+                <Tag color={formatedStatus.color} key={state}>
+                  {t(formatedStatus.name)}
+                </Tag>
+              )
+            }}
           />
           <Column
             title={t('Edit')}
