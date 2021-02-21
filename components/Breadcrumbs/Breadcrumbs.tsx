@@ -14,12 +14,12 @@ const Breadcrumbs: React.FC<IBreadcrumbsProps> = ({ t }) => {
   return (
     <Breadcrumb style={{ margin: '16px 0' }}>
       {route === '/' && (
-        <Breadcrumb.Item key="/homepage">{t('homepage')}</Breadcrumb.Item>
+        <Breadcrumb.Item key="/homepage">{t('Homepage')}</Breadcrumb.Item>
       )}
       {route === '/_error' && (
         <>
           <Breadcrumb.Item key="/homepage" href="/">
-            {t('homepage')}
+            {t('Homepage')}
           </Breadcrumb.Item>
           <Breadcrumb.Item key="error-404">{t('Error 404')}</Breadcrumb.Item>
         </>

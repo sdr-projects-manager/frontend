@@ -6,9 +6,10 @@ import Teams from 'services/Api/endpoints/Teams'
 
 export interface TeamPageProps {
   id: number
+  t: (text: string) => string
 }
 
-const TeamPage: React.FunctionComponent<TeamPageProps> = ({ id }) => {
+const TeamPage: React.FunctionComponent<TeamPageProps> = ({ id, t }) => {
   const { isLoading, error, data } = useQuery('team', () =>
     new Teams().getById(id).then((res) => res.data)
   )
