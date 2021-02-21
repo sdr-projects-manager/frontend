@@ -64,9 +64,18 @@ const ProjectsList: React.FC<IProjectsList> = ({ t }) => {
             />
             <Column
               title={t('Edit')}
-              render={(Project: IProject) => (
+              render={(project: IProject) => (
                 <FormModal
-                  FormComponent={<ProjectForm values={Project} />}
+                  FormComponent={
+                    <ProjectForm
+                      initialValues={{
+                        ...project,
+                        limitation: project.budget.cost,
+                        state: project.state,
+                        teamId: project.team.id
+                      }}
+                    />
+                  }
                   type="edit"
                 />
               )}

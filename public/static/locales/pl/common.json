@@ -53,5 +53,6 @@
     "Budget": "Budżet",
     "Request failed with status code 403": "Żądanie nie powiodło się. Kod stanu 403",
     "See more": "Zobacz więcej",
-    "Project has been closed": "Projekt został zamknięty"
+    "Project has been closed": "Projekt został zamknięty",
+    "Project has been created": "Project został utworzony"
 }

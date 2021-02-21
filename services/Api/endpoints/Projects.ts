@@ -21,4 +21,11 @@ export default class Projects implements IApi {
   async delete(id: number): Promise<AxiosResponse> {
     return axiosInstance.delete(`${this.base + id}`)
   }
+
+  async edit(
+    id: number,
+    data: Partial<IProject>
+  ): Promise<AxiosResponse<IProject>> {
+    return axiosInstance.put(`${this.base + id}`, data)
+  }
 }
