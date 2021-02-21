@@ -5,6 +5,10 @@ import { toast } from 'react-toastify'
 import { withTranslation } from 'locale/i18n'
 import Teams from 'services/Api/endpoints/Teams'
 import { TeamsQuery } from 'types/IQuries'
+import FormModal from '@components/FormModal'
+import { ITeam } from 'types/ITeams'
+import Link from 'next/link'
+import TeamForm from '../TeamForm'
 
 interface ITeamsList {
   t: (text: string) => string
@@ -19,6 +23,9 @@ const TeamsList: React.FC<ITeamsList> = ({ t }) => {
 
   return (
     <>
+      <div>
+        <FormModal FormComponent={<TeamForm />} type="add" />
+      </div>
       {isLoading && <Spin />}
       {data && (
         <Table dataSource={data} rowKey="id">
@@ -27,6 +34,24 @@ const TeamsList: React.FC<ITeamsList> = ({ t }) => {
             title={t('Max people')}
             dataIndex="maxPeople"
             key="maxPeople"
+          />
+          <Column
+            title={t('Edit')}
+            key="edit"
+            render={(values: ITeam) => (
+              <FormModal
+                FormComponent={<TeamForm initialValues={{ ...values }} />}
+                type="edit"
+              />
+            )}
+          />
+          <Column
+            title={t('See more')}
+            dataIndex="more"
+            key="more"
+            render={(_, values: ITeam) => (
+              <Link href={`/teams/${values.id}`}>{t('See more')}</Link>
+            )}
           />
         </Table>
       )}

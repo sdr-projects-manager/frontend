@@ -51,7 +51,7 @@ const ProjectForm: React.FunctionComponent<IProps> = ({
         } else if (data.instance) {
           queryClient.setQueryData(ProjectsQuery, (prev: any) => [
             ...prev,
-            data
+            data.instance
           ])
           close()
         } else {

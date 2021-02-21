@@ -5,6 +5,7 @@ import { PopconfirmProps } from 'antd/lib/popconfirm'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import { useMutation, useQueryClient } from 'react-query'
 import { AxiosResponse } from 'axios'
+import { toast } from 'react-toastify'
 
 interface IProps {
   buttonTitle?: string
@@ -26,12 +27,15 @@ const ButtonDelete: React.FC<IProps> = ({
 
   const { mutate, isLoading } = useMutation(() => deleteMethod(), {
     onSuccess: (data) => {
-      const list = queryClient.getQueryData(queryKey) as Array<any>
-      const item = list.find((l) => l.id === data.data.instance.id)
-      const updatedList = list.filter((value) => value.id !== item.id)
-
-      queryClient.setQueryData(queryKey, updatedList)
-      setVisible(false)
+      if (!data.data.instance.id && data.data.message) {
+        toast.warn(data.data.message)
+      } else {
+        const list = queryClient.getQueryData(queryKey) as Array<any>
+        const item = list.find((l) => l.id === data.data.instance.id)
+        const updatedList = list.filter((value) => value.id !== item.id)
+        queryClient.setQueryData(queryKey, updatedList)
+        setVisible(false)
+      }
     }
   })
 

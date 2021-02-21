@@ -1,14 +1,15 @@
-import { getFormatedStatus } from '@utils/getFormatedStatus'
 import { isError } from '@utils/isError'
 import { Form, Input, Select, Button, InputNumber } from 'antd'
 import { withTranslation } from 'locale/i18n'
 import { useEffect } from 'react'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
-import Projects from 'services/Api/endpoints/Projects'
-import Tasks from 'services/Api/endpoints/Tasks'
-import { ProjectsQuery } from 'types/IQuries'
+import Teams from 'services/Api/endpoints/Teams'
+import Users from 'services/Api/endpoints/Users'
+import { TeamsQuery, UsersQuery } from 'types/IQuries'
 import { ITask } from 'types/ITasks'
+import { ITeam } from 'types/ITeams'
+import { IUser } from 'types/IUsers'
 
 interface IProps {
   t: (text: string) => string
@@ -18,8 +19,7 @@ interface IProps {
   setFetch?: (isFetch: boolean) => void
 }
 
-const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
-  const { TextArea } = Input
+const TeamForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
   const { Option } = Select
 
   const queryClient = useQueryClient()
@@ -33,18 +33,18 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
   }
 
   const { mutate, isLoading } = useMutation(
-    (newProject: Partial<ITask>) =>
+    (newTeam: Partial<ITeam>) =>
       initialValues?.id
-        ? new Tasks().edit(initialValues.id ? initialValues.id : 0, newProject)
-        : new Tasks().add(newProject),
+        ? new Teams().edit(initialValues.id ? initialValues.id : 0, newTeam)
+        : new Teams().add(newTeam),
     {
       onSuccess: ({ data }: any) => {
         if (initialValues?.id) {
           // TODO: Update cache not refesh
-          queryClient.refetchQueries('tasks')
+          queryClient.refetchQueries(TeamsQuery)
           close()
         } else if (data.instance) {
-          queryClient.setQueryData('tasks', (prev: any) => [
+          queryClient.setQueryData(TeamsQuery, (prev: any) => [
             ...prev,
             data.instance
           ])
@@ -61,8 +61,8 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
     }
   )
 
-  const projects = useQuery(ProjectsQuery, () =>
-    new Projects().get().then((res) => res.data)
+  const availableUsers = useQuery(UsersQuery, () =>
+    new Users().get().then((res) => res.data)
   )
 
   useEffect(() => {
@@ -71,13 +71,11 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
 
   return (
     <Form
-      onFinish={({ name, description, cost, state, projectId }) => {
+      onFinish={({ name, maxPeople, users }) => {
         mutate({
           name,
-          description,
-          cost,
-          state,
-          projectId
+          maxPeople: parseInt(maxPeople, 10),
+          users
         })
       }}
       initialValues={initialValues}
@@ -93,40 +91,29 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
       >
         <Input />
       </Form.Item>
-      <Form.Item label={t('description')} name="description">
-        <TextArea />
+      <Form.Item
+        label={t('Max people')}
+        name="maxPeople"
+        rules={[{ required: true, message: t('Please input max poeple') }]}
+      >
+        <InputNumber min={0} />
       </Form.Item>
       <Form.Item
-        label={`${t('cost')}($)`}
-        name="cost"
-        rules={[{ required: true, message: t('Please input cost') }]}
+        label={t('Users')}
+        name="users"
+        rules={[{ required: true, message: t('Please input name') }]}
       >
-        <InputNumber min={1} />
-      </Form.Item>
-      <Form.Item
-        label={t('status')}
-        name="state"
-        rules={[{ required: true, message: t('Please select status') }]}
-      >
-        <Select>
-          {[0, 1].map((state: any) => (
-            <Option value={state} key={state}>
-              {t(getFormatedStatus(state).name)}
-            </Option>
-          ))}
-        </Select>
-      </Form.Item>
-      <Form.Item
-        label={t('project')}
-        name="projectId"
-        rules={[{ required: true, message: t('Please select project') }]}
-      >
-        <Select>
-          {projects.data?.map((project) => (
-            <Option key={project.id} value={project.id}>
-              {project.name}
-            </Option>
-          ))}
+        <Select
+          mode="multiple"
+          placeholder={t('Select users')}
+          loading={availableUsers.isLoading}
+        >
+          {availableUsers.data &&
+            availableUsers.data.map((user: IUser) => (
+              <Option key={user.id} value={user.id}>
+                {user.name}
+              </Option>
+            ))}
         </Select>
       </Form.Item>
       <Form.Item>
@@ -138,4 +125,4 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
   )
 }
 
-export default withTranslation('common')(TaskForm)
+export default withTranslation('common')(TeamForm)
