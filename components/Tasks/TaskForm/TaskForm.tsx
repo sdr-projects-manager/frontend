@@ -1,7 +1,9 @@
+import { isError } from '@utils/isError'
 import { Form, Input, Select, Button, InputNumber } from 'antd'
 import { withTranslation } from 'locale/i18n'
 import { useEffect } from 'react'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { toast } from 'react-toastify'
 import Projects from 'services/Api/endpoints/Projects'
 import Tasks from 'services/Api/endpoints/Tasks'
 import { ProjectsQuery } from 'types/IQuries'
@@ -39,6 +41,11 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
         if (setOpen) {
           setOpen(false)
           form.resetFields()
+        }
+      },
+      onError: (error) => {
+        if (isError(error)) {
+          toast.error(t(error.message))
         }
       }
     }
