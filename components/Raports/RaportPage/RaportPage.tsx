@@ -70,7 +70,7 @@ const RaportPage: React.FunctionComponent<RaportPageProps> = ({ id, t }) => {
     <>
       {isLoading && <Spin />}
       {data && (
-        <Table dataSource={[data]} rowKey="id">
+        <Table dataSource={[data]} rowKey="id" pagination={false}>
           <Column
             title={t('Project')}
             dataIndex="project"
