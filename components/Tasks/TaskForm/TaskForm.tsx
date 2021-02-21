@@ -1,3 +1,4 @@
+import { getFormatedStatus } from '@utils/getFormatedStatus'
 import { isError } from '@utils/isError'
 import { Form, Input, Select, Button, InputNumber } from 'antd'
 import { withTranslation } from 'locale/i18n'
@@ -24,23 +25,29 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
   const queryClient = useQueryClient()
   const [form] = Form.useForm()
 
+  const close = () => {
+    if (setOpen) {
+      setOpen(false)
+      form.resetFields()
+    }
+  }
+
   const { mutate, isLoading } = useMutation(
     (newProject: Partial<ITask>) =>
       initialValues?.id
         ? new Tasks().edit(initialValues.id ? initialValues.id : 0, newProject)
         : new Tasks().add(newProject),
     {
-      onSuccess: ({ data }) => {
+      onSuccess: ({ data }: any) => {
         if (initialValues?.id) {
           // TODO: Update cache not refesh
           queryClient.refetchQueries('tasks')
-        } else {
+          close()
+        } else if (data.instance) {
           queryClient.setQueryData('tasks', (prev: any) => [...prev, data])
-        }
-
-        if (setOpen) {
-          setOpen(false)
-          form.resetFields()
+          close()
+        } else {
+          toast.warn(t(data.message))
         }
       },
       onError: (error) => {
@@ -61,11 +68,12 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
 
   return (
     <Form
-      onFinish={({ name, description, cost, projectId }) => {
+      onFinish={({ name, description, cost, state, projectId }) => {
         mutate({
           name,
           description,
           cost,
+          state,
           projectId
         })
       }}
@@ -98,9 +106,11 @@ const TaskForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
         rules={[{ required: true, message: t('Please select status') }]}
       >
         <Select>
-          <Option value="new">{t('New')}</Option>
-          <Option value="in_progress">{t('In progress')}</Option>
-          <Option value="closed">{t('Closed')}</Option>
+          {[0, 1].map((state: any) => (
+            <Option value={state} key={state}>
+              {t(getFormatedStatus(state).name)}
+            </Option>
+          ))}
         </Select>
       </Form.Item>
       <Form.Item

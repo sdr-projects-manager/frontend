@@ -5,7 +5,7 @@ export interface ITask {
   name: string
   description: string
   cost: string
-  priority: string
+  state: 0 | 1
   project: IProject
 }
 

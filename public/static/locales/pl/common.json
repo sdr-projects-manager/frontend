@@ -6,7 +6,7 @@
     "Users": "Użytkownicy",
     "error-404": "Błąd 404",
     "name": "nazwa",
-    "Description": "Opis",
+    "description": "Opis",
     "Cost": "Koszt",
     "Costs": "Koszt",
     "priority": "priorytet",
@@ -16,6 +16,7 @@
     "low": "niski",
     "Add": "dodaj",
     "Project": "Projekt",
+    "project": "projekt",
     "state": "status",
     "date": "data",
     "languages": "języki",
@@ -51,5 +52,6 @@
     "Profitability": "Zysk",
     "Budget": "Budżet",
     "Request failed with status code 403": "Żądanie nie powiodło się. Kod stanu 403",
-    "See more": "Zobacz więcej"
+    "See more": "Zobacz więcej",
+    "Project has been closed": "Projekt został zamknięty"
 }

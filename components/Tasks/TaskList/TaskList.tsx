@@ -10,6 +10,7 @@ import ButtonDelete from '@components/buttons/Delete'
 import { ITask } from 'types/ITasks'
 import { TasksQuery } from 'types/IQuries'
 import { getFormatedStatus } from '@utils/getFormatedStatus'
+import { getFormatedPrice } from '@utils/getFormatedPrice'
 import TaskForm from '../TaskForm'
 
 interface IProps {
@@ -44,6 +45,12 @@ const TasksList: React.FC<IProps> = ({ t }) => {
             render={(project) => project.name}
           />
           <Column
+            title={t('cost')}
+            dataIndex="cost"
+            key="cost"
+            render={(cost) => getFormatedPrice(cost)}
+          />
+          <Column
             title={t('state')}
             dataIndex="state"
             key="state"
@@ -62,7 +69,7 @@ const TasksList: React.FC<IProps> = ({ t }) => {
               <FormModal
                 FormComponent={
                   <TaskForm
-                    initialValues={{ ...values, projectId: values.project.id }}
+                    initialValues={{ ...values, projectId: values.project?.id }}
                   />
                 }
                 type="edit"
