@@ -25,7 +25,7 @@ const ProjectsList: React.FC<IProjectsList> = ({ t }) => {
     new Projects().get().then((res) => res.data)
   )
 
-  if (isError(error)) toast.error(error.message)
+  if (isError(error)) toast.error(t(error.message))
 
   return (
     <>
@@ -64,9 +64,9 @@ const ProjectsList: React.FC<IProjectsList> = ({ t }) => {
             />
             <Column
               title={t('Edit')}
-              render={(values) => (
+              render={(Project: IProject) => (
                 <FormModal
-                  FormComponent={<ProjectForm values={values} />}
+                  FormComponent={<ProjectForm values={Project} />}
                   type="edit"
                 />
               )}

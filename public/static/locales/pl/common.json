@@ -1,12 +1,12 @@
 {
-    "homepage": "strona główna",
-    "projects": "projekty",
-    "tasks": "zadania",
-    "teams": "zespoły",
-    "users": "użytkownicy",
+    "Homepage": "strona główna",
+    "Projects": "projekty",
+    "Tasks": "zadania",
+    "Teams": "zespoły",
+    "Users": "użytkownicy",
     "error-404": "Błąd 404",
     "name": "nazwa",
-    "description": "opis",
+    "Description": "opis",
     "Cost": "Koszt",
     "Costs": "Koszt",
     "priority": "priorytet",
@@ -35,7 +35,7 @@
     "Name": "Imię",
     "Submit": "Wyślij",
     "Edit": "Edytuj",
-    "budget limit": "Limit budgetu",
+    "budget limit": "Limit budżetu",
     "Please input budget limit": "Wpisz limit",
     "Please select team": "Wybierz zespół",
     "Surname": "Nazwisko",
@@ -49,5 +49,6 @@
     "Raports": "Raporty",
     "Raport": "Raport",
     "Profitability": "Zysk",
-    "Budget": "Budżet"
+    "Budget": "Budżet",
+    "Request failed with status code 403": "Żądanie nie powiodło się. Kod stanu 403"
 }

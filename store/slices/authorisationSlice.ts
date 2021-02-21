@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { QueryClient } from 'react-query'
 
 interface IProps {
   token: string
@@ -18,6 +19,7 @@ const authorisationSlice = createSlice({
     logout(state: IProps) {
       state.token = ''
       localStorage.removeItem('token')
+      new QueryClient().removeQueries()
     }
   }
 })

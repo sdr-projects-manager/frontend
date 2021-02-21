@@ -15,7 +15,7 @@ const TeamsList: React.FC<ITeamsList> = ({ t }) => {
     new Teams().get().then((res) => res.data)
   )
 
-  if (isError(error)) toast.error(error.message)
+  if (isError(error)) toast.error(t(error.message))
 
   return (
     <>

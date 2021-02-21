@@ -1,20 +1,21 @@
 import Head from '@components/Head'
+import Projects from 'services/Api/endpoints/Projects'
 import { Spin } from 'antd'
-import Title from 'antd/lib/typography/Title'
 import { isError, useQuery } from 'react-query'
 import { toast } from 'react-toastify'
-import Projects from 'services/Api/endpoints/Projects'
+import { withTranslation } from 'locale/i18n'
 
 export interface ProjectPageProps {
   id: number
+  t: (text: string) => string
 }
 
-const ProjectPage: React.FunctionComponent<ProjectPageProps> = ({ id }) => {
+const ProjectPage: React.FunctionComponent<ProjectPageProps> = ({ t, id }) => {
   const { isLoading, error, data } = useQuery('project', () =>
     new Projects().getById(id).then((res) => res.data)
   )
 
-  if (isError(error)) toast.error(error.message)
+  if (isError(error)) toast.error(t(error.message))
 
   return (
     <>
@@ -28,4 +29,4 @@ const ProjectPage: React.FunctionComponent<ProjectPageProps> = ({ id }) => {
   )
 }
 
-export default ProjectPage
+export default withTranslation('common')(ProjectPage)

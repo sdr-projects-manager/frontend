@@ -13,7 +13,7 @@ const TeamPage: React.FunctionComponent<TeamPageProps> = ({ id }) => {
     new Teams().getById(id).then((res) => res.data)
   )
 
-  if (isError(error)) toast.error(error.message)
+  if (isError(error)) toast.error(t(error.message))
 
   return (
     <>

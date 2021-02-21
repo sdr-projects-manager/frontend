@@ -18,7 +18,7 @@ const RaportsList: React.FunctionComponent<RaportsListProps> = ({ t }) => {
     new Raports().get().then((res) => res.data)
   )
 
-  if (isError(error)) toast.error(error.message)
+  if (isError(error)) toast.error(t(error.message))
 
   return (
     <>

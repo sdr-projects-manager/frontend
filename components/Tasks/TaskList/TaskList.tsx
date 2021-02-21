@@ -21,7 +21,7 @@ const TasksList: React.FC<IProps> = ({ t }) => {
     new Tasks().get().then((res) => res.data)
   )
 
-  if (isError(error)) toast.error(error.message)
+  if (isError(error)) toast.error(t(error.message))
 
   return (
     <>
