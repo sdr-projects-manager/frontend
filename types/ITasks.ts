@@ -7,6 +7,7 @@ export interface ITask {
   cost: string
   state: 0 | 1
   project: IProject
+  projectId: number
 }
 
 export type ITasks = Array<ITask>

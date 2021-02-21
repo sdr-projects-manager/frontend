@@ -5,13 +5,14 @@ import { toast } from 'react-toastify'
 import Teams from 'services/Api/endpoints/Teams'
 import Users from 'services/Api/endpoints/Users'
 import { UsersQuery } from 'types/IQuries'
+import { withTranslation } from 'locale/i18n'
 
 export interface TeamPageProps {
   id: number
   t: (text: string) => string
 }
 
-const TeamPage: React.FunctionComponent<TeamPageProps> = ({ id, t }) => {
+const TeamPage: React.FunctionComponent<TeamPageProps> = ({ t, id }) => {
   const { isLoading, error, data } = useQuery('team', () =>
     new Teams().getById(id).then((res) => res.data)
   )
@@ -34,4 +35,4 @@ const TeamPage: React.FunctionComponent<TeamPageProps> = ({ id, t }) => {
   )
 }
 
-export default TeamPage
+export default withTranslation('common')(TeamPage)
