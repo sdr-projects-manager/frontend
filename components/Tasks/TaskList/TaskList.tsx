@@ -58,9 +58,13 @@ const TasksList: React.FC<IProps> = ({ t }) => {
           />
           <Column
             title={t('Edit')}
-            render={(values) => (
+            render={(values: ITask) => (
               <FormModal
-                FormComponent={<TaskForm initialValues={values} />}
+                FormComponent={
+                  <TaskForm
+                    initialValues={{ ...values, projectId: values.project.id }}
+                  />
+                }
                 type="edit"
               />
             )}

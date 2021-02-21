@@ -10,7 +10,7 @@ import { ITask } from 'types/ITasks'
 interface IProps {
   t: (text: string) => string
   submitHandler?: () => void
-  initialValues?: Partial<ITask>
+  initialValues?: Partial<ITask> | any
   setOpen?: (isOpen: boolean) => void
   setFetch?: (isFetch: boolean) => void
 }
