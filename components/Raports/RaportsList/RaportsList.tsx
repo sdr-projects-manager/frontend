@@ -61,6 +61,14 @@ const RaportsList: React.FunctionComponent<RaportsListProps> = ({ t }) => {
             key="profitability"
             render={(profitability) => getFormatedPrice(profitability)}
           />
+          <Column
+            title={t('See more')}
+            dataIndex="more"
+            key="more"
+            render={(_, values: IRaport) => (
+              <Link href={`/raports/${values.id}`}>{t('See more')}</Link>
+            )}
+          />
         </Table>
       )}
     </>

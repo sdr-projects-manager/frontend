@@ -1,13 +1,21 @@
 import Head from 'components/Head'
-import { Typography } from 'antd'
+import RaportPage from '@components/Raports/RaportPage'
 
-const { Title } = Typography
+interface RaportPageProps {
+  id: number
+}
 
-const Raport: React.FC = () => (
+const Raport: React.FC<RaportPageProps> = ({ id }) => (
   <>
     <Head title="Raport" />
-    <Title>Sample raport</Title>
+    <RaportPage id={id} />
   </>
 )
+
+export const getServerSideProps = async ({
+  params
+}: {
+  params: { id: number }
+}) => ({ props: { id: params.id } })
 
 export default Raport
