@@ -9,7 +9,6 @@ import FormModal from '@components/FormModal'
 import { ITeam } from 'types/ITeams'
 import Link from 'next/link'
 import { IUser } from 'types/IUsers'
-import { useEffect, useState } from 'react'
 import TeamForm from '../TeamForm'
 
 interface ITeamsList {
@@ -52,11 +51,13 @@ const TeamsList: React.FC<ITeamsList> = ({ t }) => {
                     <TeamForm
                       initialValues={{
                         ...values,
-                        users:
-                          teamMembers &&
+                        ...(teamMembers &&
                           teamMembers.data &&
-                          teamMembers.data.length > 0 &&
-                          teamMembers.data.map((user: IUser) => user.id)
+                          teamMembers.data.length && {
+                            users: teamMembers.data.map(
+                              (user: IUser) => user.id
+                            )
+                          })
                       }}
                     />
                   }
