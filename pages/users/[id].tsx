@@ -1,13 +1,20 @@
 import Head from '@components/Head'
-import { Typography } from 'antd'
+import UserDetails from '@components/UserDetails'
+import { useQuery } from 'react-query'
+import CurrentUser from 'services/Api/endpoints/CurrentUser'
+import { CurrentUserQuery } from 'types/IQuries'
 
-const { Title } = Typography
+const User: React.FC = () => {
+  const user = useQuery(CurrentUserQuery, () =>
+    new CurrentUser().get().then((res) => res.data)
+  )
 
-const User: React.FC = () => (
-  <>
-    <Head title="User" />
-    <Title>Sample User</Title>
-  </>
-)
+  return (
+    <>
+      <Head title="User" />
+      <UserDetails user={user} />
+    </>
+  )
+}
 
 export default User

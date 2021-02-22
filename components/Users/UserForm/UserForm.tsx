@@ -48,7 +48,7 @@ const UserForm: React.FunctionComponent<IProps> = ({ t, values, setOpen }) => {
           login,
           email,
           lastName,
-          role_id: roleId,
+          role: roleId,
           password
         })
       }}
