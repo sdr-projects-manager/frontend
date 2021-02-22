@@ -6,7 +6,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
 import Teams from 'services/Api/endpoints/Teams'
 import Users from 'services/Api/endpoints/Users'
-import { TeamsQuery, TEAM_MEMBERS, UsersQuery } from 'types/IQuries'
+import { TeamsQuery, UsersQuery } from 'types/IQuries'
 import { ITask } from 'types/ITasks'
 import { ITeam } from 'types/ITeams'
 import { IUser } from 'types/IUsers'
@@ -104,6 +104,7 @@ const TeamForm: React.FC<IProps> = ({ t, setOpen, initialValues }) => {
         rules={[{ required: true, message: t('Please input name') }]}
       >
         <Select
+          disabled={initialValues?.users.length === initialValues.maxPeople}
           mode="multiple"
           placeholder={t('Select users')}
           loading={availableUsers.isLoading}
