@@ -62,7 +62,9 @@ const UsersList: React.FC<IProjectsList> = ({ t }) => {
             title={t('Edit')}
             render={(values) => (
               <FormModal
-                FormComponent={<UserForm values={values} />}
+                FormComponent={
+                  <UserForm values={{ ...values, roleId: values?.role?.id }} />
+                }
                 type="edit"
               />
             )}
