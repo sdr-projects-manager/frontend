@@ -4,10 +4,12 @@ import { isError, useQuery } from 'react-query'
 import { toast } from 'react-toastify'
 import { withTranslation } from 'locale/i18n'
 import Teams from 'services/Api/endpoints/Teams'
-import { TeamsQuery } from 'types/IQuries'
+import { TeamsQuery, TEAM_MEMBERS } from 'types/IQuries'
 import FormModal from '@components/FormModal'
 import { ITeam } from 'types/ITeams'
 import Link from 'next/link'
+import { IUser } from 'types/IUsers'
+import { useEffect, useState } from 'react'
 import TeamForm from '../TeamForm'
 
 interface ITeamsList {
@@ -38,12 +40,30 @@ const TeamsList: React.FC<ITeamsList> = ({ t }) => {
           <Column
             title={t('Edit')}
             key="edit"
-            render={(values: ITeam) => (
-              <FormModal
-                FormComponent={<TeamForm initialValues={{ ...values }} />}
-                type="edit"
-              />
-            )}
+            render={(values: ITeam) => {
+              const teamMembers = useQuery(`${TEAM_MEMBERS}:${values.id}`, () =>
+                new Teams()
+                  .getMembers(values.id)
+                  .then((res) => res.data.instance)
+              )
+              return (
+                <FormModal
+                  FormComponent={
+                    <TeamForm
+                      initialValues={{
+                        ...values,
+                        users:
+                          teamMembers &&
+                          teamMembers.data &&
+                          teamMembers.data.length > 0 &&
+                          teamMembers.data.map((user: IUser) => user.id)
+                      }}
+                    />
+                  }
+                  type="edit"
+                />
+              )
+            }}
           />
           <Column
             title={t('See more')}

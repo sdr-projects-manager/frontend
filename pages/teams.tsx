@@ -3,7 +3,7 @@ import TeamsList from '@components/Teams/TeamsList'
 
 const Teams: React.FC = () => (
   <>
-    <Head title="teams" />
+    <Head title="Teams" />
     <TeamsList />
   </>
 )

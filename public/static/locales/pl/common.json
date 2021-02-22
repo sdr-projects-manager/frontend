@@ -4,6 +4,7 @@
     "Tasks": "Zadania",
     "Teams": "Zespoły",
     "Users": "Użytkownicy",
+    "users": "użytkownicy",
     "error-404": "Błąd 404",
     "name": "nazwa",
     "description": "Opis",
@@ -60,5 +61,6 @@
     "ADMIN": "Administrator" ,
     "PM": "Project Manager",
     "TL": "Team leader",
-    "USER": "Użytkownik"
+    "USER": "Użytkownik",
+    "lastname": "Nazwisko"
 }

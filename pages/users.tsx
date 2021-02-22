@@ -10,7 +10,7 @@ interface IProps {
 
 const Users: React.FC<IProps> = () => (
   <>
-    <Head title="users" />
+    <Head title="Users" />
     <FormModal FormComponent={<UserForm />} type="add" />
     <UsersList />
   </>

@@ -58,7 +58,7 @@ const UsersList: React.FC<IProjectsList> = ({ t }) => {
               </Link>
             )}
           />
-          <Column
+          {/* <Column
             title={t('Edit')}
             render={(values) => (
               <FormModal
@@ -68,7 +68,7 @@ const UsersList: React.FC<IProjectsList> = ({ t }) => {
                 type="edit"
               />
             )}
-          />
+          /> */}
         </Table>
       )}
     </>

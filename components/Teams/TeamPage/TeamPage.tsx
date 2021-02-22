@@ -21,7 +21,7 @@ const TeamPage: React.FunctionComponent<TeamPageProps> = ({ t, id }) => {
     new Teams().getById(id).then((res) => res.data)
   )
 
-  const members = useQuery(TEAM_MEMBERS, () =>
+  const members = useQuery(`${TEAM_MEMBERS}:${id}`, () =>
     new Teams().getMembers(id).then((res) => res.data)
   )
 

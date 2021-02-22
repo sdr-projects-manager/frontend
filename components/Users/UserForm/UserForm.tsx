@@ -42,18 +42,28 @@ const UserForm: React.FunctionComponent<IProps> = ({ t, values, setOpen }) => {
     <Form
       form={form}
       initialValues={values}
-      onFinish={({ name, email, password }) => {
+      onFinish={({ name, email, password, lastName, roleId, login }) => {
         mutate({
           name,
+          login,
           email,
+          lastName,
+          role_id: roleId,
           password
         })
       }}
     >
       <Form.Item
-        label={t('name')}
+        label={t('Name')}
         name="name"
         rules={[{ required: true, message: t('Please input name') }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label={t('lastname')}
+        name="lastName"
+        rules={[{ required: true, message: t('Please input lastname') }]}
       >
         <Input />
       </Form.Item>

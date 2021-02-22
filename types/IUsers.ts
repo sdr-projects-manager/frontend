@@ -6,6 +6,8 @@ export interface IUser {
   lastName: string
   email: string
   modificationDate: string
+  // eslint-disable-next-line camelcase
+  role_id?: number
   role: {
     id: number
     name: string
