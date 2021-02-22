@@ -1,12 +1,14 @@
 import Column from 'antd/lib/table/Column'
 import Link from 'next/link'
-import { Spin, Table } from 'antd'
+import { Spin, Table, Tag } from 'antd'
 import Users from 'services/Api/endpoints/Users'
 import { isError, useQuery } from 'react-query'
 import { toast } from 'react-toastify'
 import { withTranslation } from 'locale/i18n'
 import FormModal from '@components/FormModal'
 import { UsersQuery } from 'types/IQuries'
+import { getRoleColor } from '@utils/getRoleColor'
+import { IRole } from 'types/IRoles'
 import UserForm from '../UserForm'
 
 interface IProjectsList {
@@ -32,6 +34,19 @@ const UsersList: React.FC<IProjectsList> = ({ t }) => {
             dataIndex="email"
             key="email"
             render={(email) => <a href={`mailto:${email}`}>{email}</a>}
+          />
+          <Column
+            title={t('Role')}
+            dataIndex="role"
+            key="role"
+            render={(value) => {
+              if (value) {
+                const role = value.name.toUpperCase() as IRole
+                return <Tag color={getRoleColor(role)}>{t(role)}</Tag>
+              }
+
+              return ''
+            }}
           />
           <Column
             title="Profile"

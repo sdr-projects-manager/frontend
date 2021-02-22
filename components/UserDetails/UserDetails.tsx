@@ -35,8 +35,12 @@ const Profile: React.FC<IProps> = ({ t }) => {
             dataIndex="role"
             key="role"
             render={(value) => {
-              const role = value.name.toUpperCase() as IRole
-              return <Tag color={getRoleColor(role)}>{role}</Tag>
+              if (value) {
+                const role = value.name.toUpperCase() as IRole
+                return <Tag color={getRoleColor(role)}>{t(role)}</Tag>
+              }
+
+              return ''
             }}
           />
         </Table>

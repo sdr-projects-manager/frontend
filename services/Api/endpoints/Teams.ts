@@ -1,5 +1,6 @@
 import { ITeam, ITeams } from 'types/ITeams'
 import { AxiosResponse } from 'axios'
+import { IUsers } from 'types/IUsers'
 import { axiosInstance } from '../config'
 import { IApi } from '../IApi'
 
@@ -24,5 +25,9 @@ export default class Teams implements IApi {
 
   async delete(id: number): Promise<AxiosResponse> {
     return axiosInstance.delete(`${this.base + id}`)
+  }
+
+  async getMembers(id: number): Promise<AxiosResponse> {
+    return axiosInstance.get(`${this.base}members/${id}`)
   }
 }
